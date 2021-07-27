@@ -2,7 +2,7 @@ body{
     margin: 0;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-image: url('/img/asteriodPhoto.jpg');
+    background-image: url('./img/asteriodPhoto.jpg');
     /* background-repeat:  no-repeat; */
     background-size: auto 100%;
 }
