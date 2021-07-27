@@ -1,0 +1,66 @@
+body{
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-image: url('/img/asteriodPhoto.jpg');
+    /* background-repeat:  no-repeat; */
+    background-size: auto 100%;
+}
+
+section{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+}
+
+h1{
+    color: white;
+    font-family:fantasy ;
+    font-size: 45px;
+
+    background-color: black;
+}
+
+/* #q1{
+    display: none;
+} */
+
+#title {
+    color: red;
+    font-size: 80px;
+    font-weight: bold;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 100px;
+
+    text-shadow: 3px 3px darkgreen;
+}
+
+canvas{
+    top: 0;
+    /* position: absolute; */
+    left: 0;
+    outline: none;
+    /* mix-blend-mode: exclusion; */
+}
+
+button{
+    
+    font-family: times;
+    /* font-weight: bold; */
+    font-size: 40px;
+    color: white;
+    /*   text-shadow: 10px 10px white; */
+    background: none;
+    background-color: black;
+    border: 2px rebeccapurple solid;
+    padding: 10px;
+
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover{
+    background-color: rebeccapurple;
+}

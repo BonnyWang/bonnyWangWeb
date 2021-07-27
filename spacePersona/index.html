@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css" />
+  <title>My first Vue app</title>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="js/three.js"></script>
+ 
+</head>
+<body>
+  <script src="/js/backGround.js"></script>
+
+  <div id="app">
+
+    <section id="start" v-if="startShow">
+      <div id ="title">
+        {{ message }}
+      </div>
+      <button v-on:click="showQ1" onclick="scaleDownLogo()">
+        start
+      </button>
+    </section>
+    <section v-if="qShowIndex === 0">
+      <h1> 当你用望远镜观察到一颗将到达地球轨道附近的小行星：</h1>
+      <div class="Options">
+        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 这是一个罕见的观测机会</button>
+        <button v-on:click="qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> 上面会有什么资源可以用吗</button>
+        <button v-on:click="qShowIndex+=1; properties[3]+=2; properties[5]+=2; properties[7]+=1;"> 它会撞击到地球吗</button>
+        <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 好美丽，我要为它做首诗/画幅画</button>
+      </div>
+    </section>
+    <section v-if="qShowIndex === 1">
+      <h1> 在观测时，你最想了解的是小行星的：</h1>
+      <div class="Options">
+        <button v-on:click="qShowIndex+=1; properties[1]+=1; properties[6]+=1;"> 大小</button>
+        <button v-on:click="qShowIndex+=1; properties[2]+=2;"> 转速</button>
+        <button v-on:click="qShowIndex+=1; properties[3]+=1;"> 轨道</button>
+        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 年龄</button>
+      </div>
+    </section>
+    <section v-if="qShowIndex === 2">
+      <h1> 进行进一步检测，你希望这颗小行星会是：</h1>
+      <div class="Options">
+        <button v-on:click="qShowIndex+=1; properties[2]+=1; properties[5]+=1;"> C type(碳质小行星)</button>
+        <button v-on:click="qShowIndex+=1; properties[7]+=2;"> S type(石质/硅质小行星)</button>
+        <button v-on:click="qShowIndex+=1; properties[1]+=1;"> M type(金属小行星)</button>
+        <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 一棵特别的小行星，无法被归类</button>
+      </div>
+    </section>
+    <section v-if="qShowIndex === 3">
+      <h1> 起源太空因此给你提供了一个可以将发射的机会，你想发射：</h1>
+      <div class="Options">
+        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 探测机器人，收集数据</button>
+        <button v-on:click="qShowIndex+=1; properties[2]+=1;"> 采矿机器人，附着在小行星上进行开采</button>
+        <button v-on:click="qShowIndex+=1; properties[3]+=1; properties[4]+=1;"> 收集机器人，先尝试并帮忙清理宇宙垃圾</button>
+        <button v-on:click="qShowIndex+=1; properties[1]+=1;"> 捕捉机器人，将小行星整个带回地球</button>
+      </div>
+    </section>
+    <section v-if="qShowIndex === 4">
+      <h1> 你需要为航天器选择一种获取能源方式：</h1>
+      <div class="Options">
+        <button v-on:click="qShowIndex+=1; properties[6]+=2;"> 从地球带够</button>
+        <button v-on:click="qShowIndex+=1; properties[6]+=1;"> 从空间站获取能源补充</button>
+        <button v-on:click="qShowIndex+=1; properties[5]+=2;"> 长远规划，慢慢建立空中的燃料站</button>
+        <button v-on:click="qShowIndex+=1; properties[2]+=1;"> 利用太阳（光子）驱动（光帆）</button>
+      </div>
+    </section>
+    <section v-if="qShowIndex === 5">
+      <h1> 在航行时，你的航天器突然检测到一股无形的力量：</h1>
+      <div class="Options">
+        <button v-on:click="qShowIndex+=1; properties[6]+=1; properties[7]+=1;"> 是不是设备出了什么故障</button>
+        <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 来自其他宇宙文明的神秘力量</button>
+        <button v-on:click="qShowIndex+=1; properties[7]+=1;"> 一定是黑洞！</button>
+        <button v-on:click="qShowIndex+=1; properties[3]+=1; properties[7]+=1;"> 高维世界发生了什么</button>
+      </div>
+    </section>
+    <section v-if="qShowIndex === 6">
+      <h1> 当你的航天器靠近小行星，发现与之前的观测很不一样：</h1>
+      <div class="Options">
+        <button v-on:click="qShowIndex+=1; properties[1]+=1;"> 放弃，转向其他小行星</button>
+        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 很好的机会，可以收集更多数据查明原因</button>
+        <button v-on:click="qShowIndex+=1; properties[2]+=1; properties[7]+=1;"> 平衡当前资源损耗情况做决定</button>
+        <button v-on:click="qShowIndex+=1; properties[6]+=1;"> 没有关系，先执行当前任务</button>
+      </div>
+    </section>
+    <section v-if="qShowIndex === 7">
+      <h1> 最终，你成功获得了小行星上的资源并将其带回了地球，你会将它用作</h1>
+      <div class="Options">
+        <button v-on:click="calcResult(); qShowIndex+=1; properties[0]+=1;"> 探索小行星的形成，揭秘宇宙奥秘</button>
+        <button v-on:click="calcResult(); qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> 卖了换钱，接着通过起源太空进行太空采矿</button>
+        <button v-on:click="calcResult(); qShowIndex+=1; properties[4]+=1;"> 当作艺术品自己收藏</button>
+        <button v-on:click="calcResult(); qShowIndex+=1; properties[3]+=1; properties[4]+=1;"> 贡献给全人类，这是世界的财富</button>
+      </div>
+    </section>
+
+    <section v-if="qShowIndex === 8">
+      <h1>
+        {{resultPersona}}
+      </h1>
+    </section>
+  </div>
+
+  <!-- <canvas class="webgl"></canvas> -->
+  <script src="js/main.js"></script>
+  
+</body>
+</html>
