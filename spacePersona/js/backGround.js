@@ -10,7 +10,7 @@ document.body.appendChild( renderer.domElement );
 
 // Add a normal map texture material to the cube
 const textureloader = new THREE.TextureLoader();
-const normalTexture = textureloader.load('/spacePerson/img/asteroidNormal.png');
+const normalTexture = textureloader.load('/spacePersona/img/asteroidNormal.png');
 
 const normalMaterial = new THREE.MeshStandardMaterial();
 normalMaterial.metalness = 0.1;
