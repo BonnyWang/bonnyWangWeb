@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+
 body{
     margin: 0;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-image: url('./img/asteriodPhoto.jpg');
+    /* background-color: #171717; */
+    background-image: url('./img/asteriodPhoto.png');
     /* background-repeat:  no-repeat; */
     background-size: auto 100%;
 }
@@ -17,24 +20,35 @@ section{
 
 h1{
     color: white;
-    font-family:fantasy ;
-    font-size: 45px;
+    font-family:'ZCOOL XiaoWei', serif;
+    font-size: 55px;
 
-    background-color: black;
+    /* background-color: black; */
 }
 
 /* #q1{
     display: none;
 } */
 
-#title {
-    color: red;
-    font-size: 80px;
-    font-weight: bold;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+#title p{
+    color:white;
+    font-size: 100px;
+    /* font-weight: bold; */
+    font-family: 'ZCOOL XiaoWei', serif;
+    
     margin-bottom: 100px;
+    margin: 5px;
+    text-shadow: 3px 3px red;
+    align-content: center;
+    text-align: center;
+    
+}
 
-    text-shadow: 3px 3px darkgreen;
+#title{
+    margin-bottom: 100px;
+    background-image: url('./img/titleBackground.png');
+    background-size: 100% 100%;
+    padding: 20px;
 }
 
 canvas{
@@ -61,6 +75,27 @@ button{
     margin-top: 20px;
 }
 
-button:hover{
+button:active{
     background-color: rebeccapurple;
 }
+
+#startButton {
+    background: none;
+    background-image: url('./img/startB.png');
+    background-size: 100% 100%;
+    border: none;
+    font-size: 50px;
+    color: white;
+    text-shadow: 2px 2px rebeccapurple;
+    font-family: 'ZCOOL XiaoWei', serif;
+    /* border: 3px solid #75e729; */
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+    transition: font-size .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+    font-size: 200px;
+  }

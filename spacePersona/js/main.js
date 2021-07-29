@@ -1,7 +1,7 @@
 var app = new Vue({
     el: '#app',
     data: {
-      message: '一直仰望星空',
+      message: '宇宙矿时代身份指南',
       
       q1Show: false,
       resultShow:false,

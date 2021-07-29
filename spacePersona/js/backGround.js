@@ -10,7 +10,7 @@ document.body.appendChild( renderer.domElement );
 
 // Add a normal map texture material to the cube
 const textureloader = new THREE.TextureLoader();
-const normalTexture = textureloader.load('/spacePersona/img/asteroidNormal.png');
+const normalTexture = textureloader.load('/spacePerson/img/asteroidNormal.png');
 
 const normalMaterial = new THREE.MeshStandardMaterial();
 normalMaterial.metalness = 0.1;
@@ -24,7 +24,10 @@ const cubeGeometry = new THREE.BoxGeometry;
 const cubeMaterial = normalMaterial;
 const cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
 scene.add( cube );
-cube.position.set(1,1,1);
+cube.position.set(0,2.2,0);
+cube.scale.x = 0.3;
+cube.scale.y = 0.3;
+cube.scale.z = 0.3;
 
 // Create a 3D geometry corresponde to the logo
 const subSphereGeometry = new THREE.SphereGeometry(0.7,21,21);
@@ -55,6 +58,10 @@ logoGroup.add( subSphere );
 logoGroup.add( cone1 );
 logoGroup.add( cone2 );
 logoGroup.add(ring);
+logoGroup.scale.x = 0.2;
+logoGroup.scale.y = 0.2;
+logoGroup.scale.z = 0.2;
+logoGroup.position.y = -2.5;
 scene.add(logoGroup)
 
 
@@ -81,12 +88,19 @@ for (let index = 0; index < 20; index++) {
 camera.position.z = 5;
 
 // Light
-const directionalLight = new THREE.DirectionalLight( 0xffffff, 1);
+const directionalLight = new THREE.DirectionalLight( 0xffffff, 1.5);
 scene.add(directionalLight)
 
 const light = new THREE.PointLight( 0xff0000, 10, 100 );
 light.position.set( 2, 2, 2 );
 scene.add( light );
+
+const glight = new THREE.PointLight( 0x00ff06, 0.5, 0 );
+glight.position.set( 0, 0, -10);
+scene.add( glight );
+
+let startBlinkTime;
+startBlinkTime = Date.now()
 
 const animate = function () {
     requestAnimationFrame( animate );
@@ -96,7 +110,32 @@ const animate = function () {
     
     ring.rotation.x -= 0.01;
     ring.rotation.y += 0.01;
+    
+    if(Date.now() - startBlinkTime >= 900){
+        
+        startBlinkTime = Date.now();
+        glight.position.z = -10;
+    }
+    else if (Date.now() - startBlinkTime >= 700){
+        
+        glight.position.z = 5;
+    }
+    else if (Date.now() - startBlinkTime >= 550){
 
+        glight.position.z = -10;
+    
+    }else if(Date.now() - startBlinkTime >= 500){
+       
+        glight.position.z = 5;
+
+    }else{
+
+        glight.position.z = -10;
+
+    }
+
+    
+    
     for (let index = 0; index < spheres.length; index++) {
         // spheres[index].position.x += 0.01; 
         if(spheres[index].position.y >= 2){

@@ -3,24 +3,30 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css" />
-  <title>My first Vue app</title>
+  <title>spacePersona</title>
   <script src="https://unpkg.com/vue"></script>
-  <script src="js/three.js"></script>
+  <script src="./js/three.js"></script>
  
 </head>
 <body>
   <script src="./js/backGround.js"></script>
 
   <div id="app">
-
+    <transition name="fade">
     <section id="start" v-if="startShow">
       <div id ="title">
-        {{ message }}
+        <p style="font-size: 150px;">宇宙</p>
+        <p>矿时代</p>
+        <p style="font-size: 80px;">身份指南</p>
       </div>
-      <button v-on:click="showQ1" onclick="scaleDownLogo()">
-        start
+      <button id="startButton" v-on:click="showQ1" onclick="scaleDownLogo()">
+        进入矿时代
       </button>
     </section>
+
+    
+  </transition>
+  <transition name="fade">
     <section v-if="qShowIndex === 0">
       <h1> 当你用望远镜观察到一颗将到达地球轨道附近的小行星：</h1>
       <div class="Options">
@@ -30,6 +36,7 @@
         <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 好美丽，我要为它做首诗/画幅画</button>
       </div>
     </section>
+  </transition>
     <section v-if="qShowIndex === 1">
       <h1> 在观测时，你最想了解的是小行星的：</h1>
       <div class="Options">
@@ -100,6 +107,7 @@
       </h1>
     </section>
   </div>
+
 
   <!-- <canvas class="webgl"></canvas> -->
   <script src="js/main.js"></script>
