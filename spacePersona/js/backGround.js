@@ -1,5 +1,32 @@
-
 // Setting up basic elements
+const loader = new THREE.GLTFLoader();
+
+// Mixer for 3D model animation
+let mixer;
+
+let clock = new THREE.Clock();
+
+loader.load( '/spacePersona/img/test.glb', function ( gltf ) {
+
+	scene.add( gltf.scene );
+
+    var animations = gltf.animations;
+    
+    mixer = new THREE.AnimationMixer( gltf.scene);
+
+    var action = mixer.clipAction( animations[ 0 ] ); // access first animation clip
+    action.play();
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+
+
+
+
+
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 const renderer = new THREE.WebGLRenderer({alpha:true});
@@ -105,6 +132,9 @@ startBlinkTime = Date.now()
 const animate = function () {
     requestAnimationFrame( animate );
 
+    var delta = clock.getDelta();
+    if ( mixer ) mixer.update( delta );
+
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
     
@@ -134,8 +164,7 @@ const animate = function () {
 
     }
 
-    
-    
+
     for (let index = 0; index < spheres.length; index++) {
         // spheres[index].position.x += 0.01; 
         if(spheres[index].position.y >= 2){
