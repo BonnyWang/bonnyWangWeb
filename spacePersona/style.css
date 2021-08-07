@@ -6,7 +6,7 @@ body{
     overflow-x: hidden;
     overflow-y: hidden;
     /* background-color: #171717; */
-    background-image: url('./img/asteriodPhoto.png');
+    background-image: url('./spacePersona/img/asteriodPhoto.png');
     /* background-repeat:  no-repeat; */
     background-size: auto 100%;
 }
@@ -47,7 +47,7 @@ h1{
 
 #title{
     margin-bottom: 100px;
-    background-image: url('./img/titleBackground.png');
+    background-image: url('./spacePersona/img/titleBackground.png');
     background-size: 100% 100%;
     padding: 20px;
 }
@@ -82,7 +82,7 @@ button:active{
 
 #startButton {
     background: none;
-    background-image: url('./img/startB.png');
+    background-image: url('./spacePersona/img/startB.png');
     background-size: 100% 100%;
     border: none;
     font-size: 50px;
