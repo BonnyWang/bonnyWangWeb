@@ -71,7 +71,7 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
 
     console.log(xhr.loaded / xhr.total);
 
-    app.loadProgress = Math.floor(xhr.loaded / xhr.total) * 100;
+    app.loadProgress = Math.floor(xhr.loaded / xhr.total * 100);
 
 }, function ( error ) {
 
@@ -415,7 +415,9 @@ window.addEventListener( 'mousemove', onMouseMove, false );
 let preAnimID;
 const preLoadAnimation = function(){
     preAnimID = requestAnimationFrame(preLoadAnimation);
+    console.log("prelog");
     realAsteroid.rotation.x +=0.1;
+    renderer.render(scene, camera);
 }
 
 
