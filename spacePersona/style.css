@@ -21,7 +21,8 @@ section{
 
 h1{
     color: white;
-    font-family:'ZCOOL XiaoWei', serif;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: normal;
     font-size: 55px;
 
     /* background-color: black; */
@@ -94,7 +95,7 @@ button:active{
 
 .result{
     color:white;
-    width: 80%;
+    width: 70%;
     height: 70%;
     display: inline;
 
@@ -105,9 +106,11 @@ button:active{
     /* width:; */
     height: fit-content;
 
-    font-size: 60px;
-    font-family: 'Noto Sans SC', sans-serif;
-    border-bottom: 3px solid green;
+    font-size: 100px;
+    text-shadow: 5px 5px red;
+    font-family: 'SimHei';
+    padding: 30px;
+    border-bottom: 10px solid white;
 
     text-align: center;
     /* background-color: red; */
@@ -115,9 +118,11 @@ button:active{
 
 .result h2{
     height: fit-content;
-    font-size: 50px;
+    font-weight: normal;
+    color:  red;
+    font-size: 60px;
     margin: 0;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .result p{
@@ -126,8 +131,10 @@ button:active{
     margin: 0;
     padding: 0;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 .statistic button{
+    
     overflow: visible;
     word-break: keep-all;
 
@@ -135,8 +142,9 @@ button:active{
 }
 
 .statistic{
+    margin-top: 100px;
     display: grid;
-    background-color: grey;
+    background-color: rgba(10, 10, 10, 0.5);
 
 }
 

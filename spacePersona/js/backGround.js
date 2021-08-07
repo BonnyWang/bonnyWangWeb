@@ -11,7 +11,7 @@ let clock = new THREE.Clock();
 
 let i;
 
-var asteroids = ['/spacePersona/img/asteroid0.glb','/spacePersona/img/asteroid1.glb'];
+var asteroids = ['/img/asteroid0.glb','/img/asteroid1.glb'];
 const asteroidModels = [];
 
 for ( i = 0; i < asteroids.length; i++) {
@@ -38,7 +38,7 @@ for ( i = 0; i < asteroids.length; i++) {
 let satelliteModel;
 
 let satelliteLoader = new THREE.GLTFLoader();
-satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
+satelliteLoader.load("/img/satellite.glb", function ( gltf ) {
 
     scene.add( gltf.scene );
 
@@ -48,6 +48,8 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
     satelliteModel.position.z = 0;
 
     animate();
+    renderAnimate();
+    app.startShow = true;
 
 }, undefined, function ( error ) {
 
@@ -56,7 +58,7 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
 } );
 
 
-// loader.load( '/spacePersona/img/asteroid1.glb', function ( gltf ) {
+// loader.load( '/img/asteroid1.glb', function ( gltf ) {
 
 // 	scene.add( gltf.scene );
 
@@ -87,7 +89,7 @@ document.body.appendChild( renderer.domElement );
 
 // Add a normal map texture material to the cube
 const textureloader = new THREE.TextureLoader();
-const normalTexture = textureloader.load('/spacePersona/img/asteroidNormal.png');
+const normalTexture = textureloader.load('/img/asteroidNormal.png');
 
 const normalMaterial = new THREE.MeshStandardMaterial();
 normalMaterial.metalness = 0.1;
@@ -147,7 +149,7 @@ scene.add(logoGroup)
 const textLoader = new THREE.FontLoader();
 let textMesh;
 
-textLoader.load( '/spacePersona/img/font.json', function ( font ) {
+textLoader.load( '/img/font.json', function ( font ) {
 
 	const textGeometry = new THREE.TextGeometry( '>>进入矿时代', {
 		font: font,
@@ -163,8 +165,8 @@ textLoader.load( '/spacePersona/img/font.json', function ( font ) {
 
     scene.add(textMesh);
 
-    renderAnimate();
-    app.startShow = true;
+    // renderAnimate();
+    // app.startShow = true;
 } );
 
 
