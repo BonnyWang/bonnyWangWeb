@@ -11,36 +11,52 @@ let clock = new THREE.Clock();
 
 let i;
 
-var asteroids = ['/spacePersona/img/asteroid0.glb', '/spacePersona/img/asteroid1.glb'];
+var asteroids = ['/spacePersona/img/asteroid0.glb','/spacePersona/img/asteroid1.glb','/spacePersona/img/fakeAsteroid.glb'];
 const asteroidModels = [];
 
-for (i = 0; i < asteroids.length; i++) {
+for ( i = 0; i < asteroids.length; i++) {
     loaders[i] = new THREE.GLTFLoader();
-    loaders[i].load(asteroids[i], function (gltf) {
+    loaders[i].load( asteroids[i], function ( gltf ) {
 
-        scene.add(gltf.scene);
+        scene.add( gltf.scene );
 
         // Need to be careful here since the load function is ashynchronous
         asteroidModels[asteroidModels.length] = gltf.scene;
 
-        gltf.scene.position.y = Math.random() * -4 + 2;
-
-
-    }, undefined, function (error) {
-
-        console.error(error);
-
-    });
-
+        gltf.scene.position.y = Math.random()*-4+2;
+    
+    
+    }, undefined, function ( error ) {
+    
+        console.error( error );
+    
+    } );
+    
 }
+
+let realAsteroid;
+const realAstoidLoader = new THREE.GLTFLoader();
+realAstoidLoader.load("/spacePersona/img/realAsteroid.glb", function ( gltf ) {
+
+    realAsteroid = gltf.scene;
+    scene.add( gltf.scene );
+
+    preLoadAnimation();
+    
+}, undefined, function ( error ) {
+
+    console.error( error );
+
+} );
+
 
 // Load satellite model
 let satelliteModel;
 
 let satelliteLoader = new THREE.GLTFLoader();
-satelliteLoader.load("/spacePersona/img/satellite.glb", function (gltf) {
+satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
 
-    scene.add(gltf.scene);
+    scene.add( gltf.scene );
 
     satelliteModel = gltf.scene;
     satelliteModel.position.x = -1;
@@ -51,11 +67,15 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function (gltf) {
     renderAnimate();
     app.startShow = true;
 
-}, undefined, function (error) {
+}, function ( xhr ) {
 
-    console.error(error);
+    app.loadProgress = Math.floor(xhr.loaded / xhr.total) * 100;
 
-});
+}, function ( error ) {
+
+    console.error( error );
+
+} );
 
 
 // loader.load( '/spacePersona/img/asteroid1.glb', function ( gltf ) {
@@ -65,7 +85,7 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function (gltf) {
 //     asteroidModel = gltf.scene;
 
 //     // var animations = gltf.animations;
-
+    
 //     // mixer = new THREE.AnimationMixer( gltf.scene);
 
 //     // var action = mixer.clipAction( animations[ 0 ] ); // access first animation clip
@@ -80,12 +100,12 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function (gltf) {
 
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ alpha: true });
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const renderer = new THREE.WebGLRenderer({alpha:true});
 
 // Set and add render
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.appendChild(renderer.domElement);
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
 
 // Add a normal map texture material to the cube
 const textureloader = new THREE.TextureLoader();
@@ -93,7 +113,7 @@ const normalTexture = textureloader.load('/spacePersona/img/asteroidNormal.png')
 
 const normalMaterial = new THREE.MeshStandardMaterial();
 normalMaterial.metalness = 0.1;
-normalMaterial.roughness = 0.2;
+normalMaterial.roughness = 0.2;    
 normalMaterial.normalMap = normalTexture;
 normalMaterial.color = new THREE.Color(0x2400ff);
 
@@ -103,41 +123,41 @@ normalMaterial.color = new THREE.Color(0x2400ff);
 // Cube Geometry
 const cubeGeometry = new THREE.BoxGeometry;
 const cubeMaterial = normalMaterial;
-const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-scene.add(cube);
-cube.position.set(0, 2.2, 0);
+const cube = new THREE.Mesh( cubeGeometry, cubeMaterial );
+scene.add( cube );
+cube.position.set(0,2.2,0);
 cube.scale.x = 0.3;
 cube.scale.y = 0.3;
 cube.scale.z = 0.3;
 
 // Create a 3D geometry corresponde to the logo
-const subSphereGeometry = new THREE.SphereGeometry(0.7, 21, 21);
+const subSphereGeometry = new THREE.SphereGeometry(0.7,21,21);
 const subSphereMaterial = new THREE.MeshStandardMaterial({ color: 0x11ffff });
-const subSphere = new THREE.Mesh(subSphereGeometry, subSphereMaterial);
+const subSphere = new THREE.Mesh(subSphereGeometry,subSphereMaterial);
 // scene.add(subSphere);
 
-const cone1Geometry = new THREE.ConeGeometry(0.2, 1.8, 32);
+const cone1Geometry = new THREE.ConeGeometry( 0.2, 1.8, 32 );
 const cone1Material = new THREE.MeshStandardMaterial({ color: 0x11ffff });
-const cone1 = new THREE.Mesh(cone1Geometry, cone1Material);
+const cone1 = new THREE.Mesh( cone1Geometry, cone1Material );
 // scene.add( cone1 );
-cone1.position.set(0.7, 1.2, 0);
+cone1.position.set(0.7,1.2,0);
 cone1.rotation.z = -0.785;
 
-const cone2Geometry = new THREE.ConeGeometry(0.2, 1.8, 32);
+const cone2Geometry = new THREE.ConeGeometry( 0.2, 1.8, 32 );
 const cone2Material = new THREE.MeshStandardMaterial({ color: 0x11ffff });
-const cone2 = new THREE.Mesh(cone2Geometry, cone2Material);
+const cone2 = new THREE.Mesh( cone2Geometry, cone2Material );
 // scene.add( cone2 );
-cone2.position.set(-0.7, -1.2, 0);
+cone2.position.set(-0.7,-1.2,0);
 cone2.rotation.z = 2.355;
 
-const ringGeometry = new THREE.TorusGeometry(1.5, 0.25, 16, 100);
-const ringMaterial = new THREE.MeshStandardMaterial({ color: 0x11ffff });
-const ring = new THREE.Mesh(ringGeometry, ringMaterial);
+const ringGeometry = new THREE.TorusGeometry( 1.5, 0.25, 16, 100 );
+const ringMaterial = new THREE.MeshStandardMaterial( { color: 0x11ffff } );
+const ring = new THREE.Mesh( ringGeometry, ringMaterial );
 
 const logoGroup = new THREE.Group();
-logoGroup.add(subSphere);
-logoGroup.add(cone1);
-logoGroup.add(cone2);
+logoGroup.add( subSphere );
+logoGroup.add( cone1 );
+logoGroup.add( cone2 );
 logoGroup.add(ring);
 logoGroup.scale.x = 0.2;
 logoGroup.scale.y = 0.2;
@@ -149,15 +169,15 @@ scene.add(logoGroup)
 const textLoader = new THREE.FontLoader();
 let textMesh;
 
-textLoader.load('/spacePersona/img/font.json', function (font) {
+textLoader.load( '/spacePersona/img/font.json', function ( font ) {
 
-    const textGeometry = new THREE.TextGeometry('>>进入矿时代', {
-        font: font,
-        size: 0.2,
+	const textGeometry = new THREE.TextGeometry( '>>进入矿时代', {
+		font: font,
+		size: 0.2,
         height: 0.1,
-    });
+	} );
 
-    const textMeterial = new THREE.MeshStandardMaterial({ color: 0x11ff00 });
+    const textMeterial = new THREE.MeshStandardMaterial({color: 0x11ff00});
     textMesh = new THREE.Mesh(textGeometry, textMeterial);
 
     textMesh.position.x = -0.5;
@@ -167,23 +187,23 @@ textLoader.load('/spacePersona/img/font.json', function (font) {
 
     // renderAnimate();
     // app.startShow = true;
-});
+} );
 
 
 // Generate random color small spheres at random location
 const spheres = [];
 
 for (let index = 0; index < 20; index++) {
-    let posX = Math.random() * -4 + 2;
-    let posY = Math.random() * -4 + 2;
-    let sphereGeometry = new THREE.SphereGeometry(0.05, 10, 10);
-    let sphereMaterial = new THREE.MeshStandardMaterial({ color: 0x11ffff });
-    let sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    scene.add(sphere);
+    let posX = Math.random()*-4 +2;
+    let posY = Math.random()*-4 +2;
+    let sphereGeometry = new THREE.SphereGeometry( 0.05, 10, 10 );
+    let sphereMaterial = new THREE.MeshStandardMaterial( { color: 0x11ffff } );
+    let sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
+    scene.add( sphere );
 
     spheres[index] = sphere;
-
-    sphere.position.set(posX, -posY, posX);
+    
+    sphere.position.set(posX,-posY,posX);
 }
 
 
@@ -192,96 +212,100 @@ for (let index = 0; index < 20; index++) {
 camera.position.z = 5;
 
 // Light
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
+const directionalLight = new THREE.DirectionalLight( 0xffffff, 1.5);
 scene.add(directionalLight)
 
-const light = new THREE.PointLight(0xff0000, 10, 100);
-light.position.set(2, 2, 2);
-scene.add(light);
+const light = new THREE.PointLight( 0xff0000, 10, 100 );
+light.position.set( 2, 2, 2 );
+scene.add( light );
 
-const glight = new THREE.PointLight(0xffffff, 0.5, 0);
-glight.position.set(0, 0, -10);
-scene.add(glight);
+const glight = new THREE.PointLight( 0xffffff, 0.5, 0 );
+glight.position.set( 0, 0, -10);
+scene.add( glight );
 
 let startBlinkTime;
-startBlinkTime = Date.now()
+startBlinkTime = Date.now();
 
 const animate = function () {
-    requestAnimationFrame(animate);
+
+    cancelAnimationFrame(preAnimID);
+    scene.remove(realAsteroid);
+
+    requestAnimationFrame( animate );
 
     // var delta = clock.getDelta();
     // if ( mixer ) mixer.update( delta );
 
-    if (satelliteModel.position.x <= 2) {
-        satelliteModel.position.x += 0.001;
+    if(satelliteModel.position.x <=2){
+        satelliteModel.position.x +=0.001;
         satelliteModel.position.y -= 0.0005;
-    } else {
+    }else{
         satelliteModel.position.x = -2;
         satelliteModel.position.y = -1;
     }
 
     satelliteModel.rotation.y += 0.001;
-
-
+   
+    
 
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
-
+    
     ring.rotation.x -= 0.01;
     ring.rotation.y += 0.01;
 
-
-    if (Date.now() - startBlinkTime >= 900) {
-
+    
+    if(Date.now() - startBlinkTime >= 900){
+        
         startBlinkTime = Date.now();
         glight.position.z = -10;
     }
-    else if (Date.now() - startBlinkTime >= 700) {
-
+    else if (Date.now() - startBlinkTime >= 700){
+        
         glight.position.z = 5;
     }
-    else if (Date.now() - startBlinkTime >= 550) {
+    else if (Date.now() - startBlinkTime >= 550){
 
         glight.position.z = -10;
-
-    } else if (Date.now() - startBlinkTime >= 500) {
-
+    
+    }else if(Date.now() - startBlinkTime >= 500){
+       
         glight.position.z = 5;
 
-    } else {
+    }else{
 
         glight.position.z = -10;
 
     }
 
     let index;
-
-    for (index = 0; index < spheres.length; index++) {
+    
+    for ( index = 0; index < spheres.length; index++) {
         // spheres[index].position.x += 0.01; 
-        if (spheres[index].position.y >= 2) {
+        if(spheres[index].position.y >= 2){
             spheres[index].position.y = -2;
-        } else {
+        }else{
             spheres[index].position.y += 0.01;
-            spheres[index].position.x = Math.cos(spheres[index].position.y * 5);
+            spheres[index].position.x = Math.cos(spheres[index].position.y*5);
         }
-
+        
     }
 
-    for (index = 0; index < asteroidModels.length; index++) {
+    for ( index = 0; index < asteroidModels.length; index++) {
         // spheres[index].position.x += 0.01; 
-        asteroidModels[index].rotation.x += 0.05;
+        asteroidModels[index].rotation.x +=0.05;
         asteroidModels[index].rotation.y += 0.05;
-        if (asteroidModels[index].position.y >= 2) {
+        if(asteroidModels[index].position.y >= 2){
             asteroidModels[index].position.y = -2;
-        } else {
+        }else{
             asteroidModels[index].position.y += 0.01;
-            asteroidModels[index].position.x = Math.cos(asteroidModels[index].position.y * 5);
+            asteroidModels[index].position.x = Math.cos(asteroidModels[index].position.y*5);
         }
-
+        
     }
 
 
-    renderer.render(scene, camera);
+    renderer.render( scene, camera );
 };
 
 
@@ -292,20 +316,20 @@ var animationID;
 
 const moveElements = function () {
     console.log("move");
-    animationID = requestAnimationFrame(moveElements);
+    animationID = requestAnimationFrame( moveElements );
 
-    cube.position.x -= 0.02;
+    cube.position.x -=0.02;
     cube.position.y -= 0.04;
 
-    if (cube.position.x <= 0) {
+    if (cube.position.x <=0) {
         cancelAnimationFrame(animationID)
     }
 }
 
-const scaleDownLogo = function () {
+const scaleDownLogo = function(){
 
     console.log("scaleDownLogo");
-    animationID = requestAnimationFrame(scaleDownLogo);
+    animationID = requestAnimationFrame( scaleDownLogo );
 
     logoGroup.scale.x -= 0.01;
     logoGroup.scale.y -= 0.01;
@@ -315,8 +339,8 @@ const scaleDownLogo = function () {
     cube.scale.y -= 0.01;
     cube.scale.z -= 0.01;
 
-    cube.position.y += 0.01;
-    cube.position.x -= 0.005;
+    cube.position.y +=0.01;
+    cube.position.x -=0.005;
     logoGroup.position.y -= 0.02;
 
     if (logoGroup.scale.y <= -1) {
@@ -331,13 +355,13 @@ const scaleDownLogo = function () {
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-function onMouseMove(event) {
+function onMouseMove( event ) {
 
-    // calculate mouse position in normalized device coordinates
-    // (-1 to +1) for both components
+	// calculate mouse position in normalized device coordinates
+	// (-1 to +1) for both components
 
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
 }
 
@@ -348,16 +372,16 @@ function renderAnimate() {
     clickDetectionID = requestAnimationFrame(renderAnimate);
 
 
-    // update the picking ray with the camera and mouse position
-    raycaster.setFromCamera(mouse, camera);
+	// update the picking ray with the camera and mouse position
+	raycaster.setFromCamera( mouse, camera );
 
-    // calculate objects intersecting the picking ray
-    const intersects = raycaster.intersectObjects(scene.children);
+	// calculate objects intersecting the picking ray
+	const intersects = raycaster.intersectObjects( scene.children );
 
-    for (i = 0; i < intersects.length; i++) {
+	for (i = 0; i < intersects.length; i ++ ) {
 
 
-        if (intersects[i].object == textMesh) {
+        if(intersects[i].object == textMesh){
             console.log("Text clicked");
             app.showQ1();
             scaleDownLogo();
@@ -366,19 +390,31 @@ function renderAnimate() {
             cancelAnimationFrame(clickDetectionID);
         }
 
-        intersects[i].object.material.color.set(0x000000);
+		intersects[ i ].object.material.color.set( 0x000000 );
 
-    }
-
-    if (textMesh.position.x >= -0.2) {
+	}
+    
+    if(textMesh.position.x >= -0.2){
         textMesh.position.x = -1.5;
     }
 
-    textMesh.position.x += 0.001;
+    textMesh.position.x +=0.001;
 
-    renderer.render(scene, camera);
+	renderer.render( scene, camera );
 
 }
 
-window.addEventListener('mousemove', onMouseMove, false);
+window.addEventListener( 'mousemove', onMouseMove, false );
+
+
+
+
+// Preload
+let preAnimID;
+const preLoadAnimation = function(){
+    preAnimID = requestAnimationFrame(preLoadAnimation);
+    realAsteroid.rotation.x +=0.1;
+}
+
+
 

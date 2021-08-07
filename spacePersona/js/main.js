@@ -2,6 +2,7 @@ var app = new Vue({
     el: '#app',
     data: {
       message: '宇宙矿时代身份指南',
+      loadProgress:0,
       
       resultDes:'该身份无已知信息',
       resultText:'N/A',
