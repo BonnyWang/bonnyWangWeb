@@ -1,29 +1,79 @@
+import app from './main.js'
+
 // Setting up basic elements
-const loader = new THREE.GLTFLoader();
+
+const loaders = [];
 
 // Mixer for 3D model animation
 let mixer;
 
 let clock = new THREE.Clock();
 
-loader.load( '/spacePersona/img/test.glb', function ( gltf ) {
+let i;
 
-	scene.add( gltf.scene );
+var asteroids = ['/img/asteroid0.glb','/img/asteroid1.glb'];
+const asteroidModels = [];
 
-    var animations = gltf.animations;
+for ( i = 0; i < asteroids.length; i++) {
+    loaders[i] = new THREE.GLTFLoader();
+    loaders[i].load( asteroids[i], function ( gltf ) {
+
+        scene.add( gltf.scene );
+
+        // Need to be careful here since the load function is ashynchronous
+        asteroidModels[asteroidModels.length] = gltf.scene;
+
+        gltf.scene.position.y = Math.random()*-4+2;
     
-    mixer = new THREE.AnimationMixer( gltf.scene);
+    
+    }, undefined, function ( error ) {
+    
+        console.error( error );
+    
+    } );
+    
+}
 
-    var action = mixer.clipAction( animations[ 0 ] ); // access first animation clip
-    action.play();
+// Load satellite model
+let satelliteModel;
+
+let satelliteLoader = new THREE.GLTFLoader();
+satelliteLoader.load("/img/satellite.glb", function ( gltf ) {
+
+    scene.add( gltf.scene );
+
+    satelliteModel = gltf.scene;
+    satelliteModel.position.x = -1;
+    satelliteModel.position.y = -2.5;
+    satelliteModel.position.z = 0;
+
+    animate();
 
 }, undefined, function ( error ) {
 
-	console.error( error );
+    console.error( error );
 
 } );
 
 
+// loader.load( '/img/asteroid1.glb', function ( gltf ) {
+
+// 	scene.add( gltf.scene );
+
+//     asteroidModel = gltf.scene;
+
+//     // var animations = gltf.animations;
+    
+//     // mixer = new THREE.AnimationMixer( gltf.scene);
+
+//     // var action = mixer.clipAction( animations[ 0 ] ); // access first animation clip
+//     // action.play();
+
+// }, undefined, function ( error ) {
+
+// 	console.error( error );
+
+// } );
 
 
 
@@ -37,13 +87,15 @@ document.body.appendChild( renderer.domElement );
 
 // Add a normal map texture material to the cube
 const textureloader = new THREE.TextureLoader();
-const normalTexture = textureloader.load('/spacePersona/img/asteroidNormal.png');
+const normalTexture = textureloader.load('/img/asteroidNormal.png');
 
 const normalMaterial = new THREE.MeshStandardMaterial();
 normalMaterial.metalness = 0.1;
 normalMaterial.roughness = 0.2;    
 normalMaterial.normalMap = normalTexture;
 normalMaterial.color = new THREE.Color(0x2400ff);
+
+
 
 
 // Cube Geometry
@@ -91,6 +143,29 @@ logoGroup.scale.z = 0.2;
 logoGroup.position.y = -2.5;
 scene.add(logoGroup)
 
+// Load 3D text
+const textLoader = new THREE.FontLoader();
+let textMesh;
+
+textLoader.load( '/img/font.json', function ( font ) {
+
+	const textGeometry = new THREE.TextGeometry( '>>进入矿时代', {
+		font: font,
+		size: 0.2,
+        height: 0.1,
+	} );
+
+    const textMeterial = new THREE.MeshStandardMaterial({color: 0x11ff00});
+    textMesh = new THREE.Mesh(textGeometry, textMeterial);
+
+    textMesh.position.x = -0.5;
+    textMesh.position.y = -1.5;
+
+    scene.add(textMesh);
+
+    renderAnimate();
+    app.startShow = true;
+} );
 
 
 // Generate random color small spheres at random location
@@ -99,7 +174,7 @@ const spheres = [];
 for (let index = 0; index < 20; index++) {
     let posX = Math.random()*-4 +2;
     let posY = Math.random()*-4 +2;
-    let sphereGeometry = new THREE.SphereGeometry( 0.1, 10, 10 );
+    let sphereGeometry = new THREE.SphereGeometry( 0.05, 10, 10 );
     let sphereMaterial = new THREE.MeshStandardMaterial( { color: 0x11ffff } );
     let sphere = new THREE.Mesh( sphereGeometry, sphereMaterial );
     scene.add( sphere );
@@ -122,7 +197,7 @@ const light = new THREE.PointLight( 0xff0000, 10, 100 );
 light.position.set( 2, 2, 2 );
 scene.add( light );
 
-const glight = new THREE.PointLight( 0x00ff06, 0.5, 0 );
+const glight = new THREE.PointLight( 0xffffff, 0.5, 0 );
 glight.position.set( 0, 0, -10);
 scene.add( glight );
 
@@ -132,14 +207,27 @@ startBlinkTime = Date.now()
 const animate = function () {
     requestAnimationFrame( animate );
 
-    var delta = clock.getDelta();
-    if ( mixer ) mixer.update( delta );
+    // var delta = clock.getDelta();
+    // if ( mixer ) mixer.update( delta );
+
+    if(satelliteModel.position.x <=2){
+        satelliteModel.position.x +=0.001;
+        satelliteModel.position.y -= 0.0005;
+    }else{
+        satelliteModel.position.x = -2;
+        satelliteModel.position.y = -1;
+    }
+
+    satelliteModel.rotation.y += 0.001;
+   
+    
 
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
     
     ring.rotation.x -= 0.01;
     ring.rotation.y += 0.01;
+
     
     if(Date.now() - startBlinkTime >= 900){
         
@@ -164,8 +252,9 @@ const animate = function () {
 
     }
 
-
-    for (let index = 0; index < spheres.length; index++) {
+    let index;
+    
+    for ( index = 0; index < spheres.length; index++) {
         // spheres[index].position.x += 0.01; 
         if(spheres[index].position.y >= 2){
             spheres[index].position.y = -2;
@@ -176,11 +265,24 @@ const animate = function () {
         
     }
 
+    for ( index = 0; index < asteroidModels.length; index++) {
+        // spheres[index].position.x += 0.01; 
+        asteroidModels[index].rotation.x +=0.05;
+        asteroidModels[index].rotation.y += 0.05;
+        if(asteroidModels[index].position.y >= 2){
+            asteroidModels[index].position.y = -2;
+        }else{
+            asteroidModels[index].position.y += 0.01;
+            asteroidModels[index].position.x = Math.cos(asteroidModels[index].position.y*5);
+        }
+        
+    }
+
 
     renderer.render( scene, camera );
 };
 
-animate();
+
 
 // Play animation in the background
 
@@ -220,3 +322,61 @@ const scaleDownLogo = function(){
     }
 
 }
+
+
+// Add mouse events to the three js scene
+
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+
+function onMouseMove( event ) {
+
+	// calculate mouse position in normalized device coordinates
+	// (-1 to +1) for both components
+
+	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+}
+
+var clickDetectionID;
+
+function renderAnimate() {
+
+    clickDetectionID = requestAnimationFrame(renderAnimate);
+
+
+	// update the picking ray with the camera and mouse position
+	raycaster.setFromCamera( mouse, camera );
+
+	// calculate objects intersecting the picking ray
+	const intersects = raycaster.intersectObjects( scene.children );
+
+	for (i = 0; i < intersects.length; i ++ ) {
+
+
+        if(intersects[i].object == textMesh){
+            console.log("Text clicked");
+            app.showQ1();
+            scaleDownLogo();
+
+            scene.remove(textMesh);
+            cancelAnimationFrame(clickDetectionID);
+        }
+
+		intersects[ i ].object.material.color.set( 0x000000 );
+
+	}
+    
+    if(textMesh.position.x >= -0.2){
+        textMesh.position.x = -1.5;
+    }
+
+    textMesh.position.x +=0.001;
+
+	renderer.render( scene, camera );
+
+}
+
+window.addEventListener( 'mousemove', onMouseMove, false );
+

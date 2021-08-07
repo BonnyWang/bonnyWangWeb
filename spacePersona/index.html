@@ -10,9 +10,12 @@
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r126/three.min.js" integrity="sha512-n8IpKWzDnBOcBhRlHirMZOUvEq2bLRMuJGjuVqbzUJwtTsgwOgK5aS0c1JA647XWYfqvXve8k3PtZdzpipFjgg==" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
-  <script src="./js/backGround.js"></script>
+  <script type="module" src="./js/backGround.js"></script>
 
   <div id="app">
+    <section id="loading" v-if="(!startShow) && (qShowIndex == -1)">
+      <h1>Loading the Universe...</h1>
+    </section>
     <transition name="fade">
     <section id="start" v-if="startShow">
       <div id ="title">
@@ -20,9 +23,9 @@
         <p>矿时代</p>
         <p style="font-size: 80px;">身份指南</p>
       </div>
-      <button id="startButton" v-on:click="showQ1" onclick="scaleDownLogo()">
+      <!-- <button id="startButton" v-on:click="showQ1" onclick="scaleDownLogo()">
         进入矿时代
-      </button>
+      </button> -->
     </section>
 
     
@@ -102,10 +105,32 @@
       </div>
     </section>
 
-    <section v-if="qShowIndex === 8">
+    <section class="result" v-if="qShowIndex === 8">
       <h1>
         {{resultPersona}}
       </h1>
+      <h2>
+        {{resultDes}}
+      </h2>
+      <p>
+        {{resultText}}
+      </p>
+      <h2>
+        宇宙矿时代建议
+      </h2>
+      <p>
+        {{resultAdvice}}
+      </p>
+      <div class="statistic">
+        <button id="academic" v-if="properties[0] > 0" v-bind:style="{ width:properties[0]*14.2+'%'}">学术</button>
+        <button id="resource" v-if="properties[1] > 0" v-bind:style="{ width:properties[1]*14.2+'%'}">资源</button>
+        <button id="engineer" v-if="properties[2] > 0" v-bind:style="{ width:properties[2]*14.2+'%'}">工程</button>
+        <button id="rescure" v-if="properties[3] > 0" v-bind:style="{ width:properties[3]*14.2+'%'}">拯救</button>
+        <button id="romantic" v-if="properties[4] > 0" v-bind:style="{ width:properties[4]*14.2+'%'}">浪漫</button>
+        <button id="vision" v-if="properties[5] > 0" v-bind:style="{ width:properties[5]*14.2+'%'}">远见</button>
+        <button id="pratical" v-if="properties[6] > 0" v-bind:style="{ width:properties[6]*14.2+'%'}">实践</button>
+        <button id="careful" v-if="properties[7] > 0" v-bind:style="{ width:properties[7]*14.2+'%'}">谨慎</button>
+      </div>
     </section>
   </div>
 

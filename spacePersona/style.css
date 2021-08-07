@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&display=swap');
 
 body{
     margin: 0;
@@ -90,6 +91,63 @@ button:active{
     font-family: 'ZCOOL XiaoWei', serif;
     /* border: 3px solid #75e729; */
 }
+
+.result{
+    color:white;
+    width: 80%;
+    height: 70%;
+    display: inline;
+
+    overflow: scroll;
+}
+
+.result h1{
+    /* width:; */
+    height: fit-content;
+
+    font-size: 60px;
+    font-family: 'Noto Sans SC', sans-serif;
+    border-bottom: 3px solid green;
+
+    text-align: center;
+    /* background-color: red; */
+}
+
+.result h2{
+    height: fit-content;
+    font-size: 50px;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.result p{
+    height: fit-content;
+    font-size: 45px;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+}
+.statistic button{
+    overflow: visible;
+    word-break: keep-all;
+
+    border: 0;
+}
+
+.statistic{
+    display: grid;
+    background-color: grey;
+
+}
+
+#academic{
+    background-color: blue;
+}
+
+#resource{
+    background-color: gold;
+}
+
 
 .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
