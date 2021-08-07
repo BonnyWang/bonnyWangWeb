@@ -69,6 +69,8 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
 
 }, function ( xhr ) {
 
+    console.log(xhr.loaded / xhr.total);
+
     app.loadProgress = Math.floor(xhr.loaded / xhr.total) * 100;
 
 }, function ( error ) {
