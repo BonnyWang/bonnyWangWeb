@@ -188,6 +188,10 @@ hr{
     margin: 100px;
 }
 
+#loading{
+    text-shadow: 3px 3px red;
+}
+
 
 .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;

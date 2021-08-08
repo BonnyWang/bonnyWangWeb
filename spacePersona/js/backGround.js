@@ -63,6 +63,8 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
     satelliteModel.position.y = -2.5;
     satelliteModel.position.z = 0;
 
+    scene.add(textMesh);
+
     animate();
     renderAnimate();
     app.startShow = true;
@@ -71,7 +73,7 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
 
     console.log(xhr.loaded / xhr.total);
 
-    app.loadProgress = Math.floor(xhr.loaded / xhr.total * 100);
+    app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
 
 }, function ( error ) {
 
@@ -136,19 +138,16 @@ cube.scale.z = 0.3;
 const subSphereGeometry = new THREE.SphereGeometry(0.7,21,21);
 const subSphereMaterial = new THREE.MeshStandardMaterial({ color: 0x11ffff });
 const subSphere = new THREE.Mesh(subSphereGeometry,subSphereMaterial);
-// scene.add(subSphere);
 
 const cone1Geometry = new THREE.ConeGeometry( 0.2, 1.8, 32 );
 const cone1Material = new THREE.MeshStandardMaterial({ color: 0x11ffff });
 const cone1 = new THREE.Mesh( cone1Geometry, cone1Material );
-// scene.add( cone1 );
 cone1.position.set(0.7,1.2,0);
 cone1.rotation.z = -0.785;
 
 const cone2Geometry = new THREE.ConeGeometry( 0.2, 1.8, 32 );
 const cone2Material = new THREE.MeshStandardMaterial({ color: 0x11ffff });
 const cone2 = new THREE.Mesh( cone2Geometry, cone2Material );
-// scene.add( cone2 );
 cone2.position.set(-0.7,-1.2,0);
 cone2.rotation.z = 2.355;
 
@@ -184,8 +183,6 @@ textLoader.load( '/spacePersona/img/font.json', function ( font ) {
 
     textMesh.position.x = -0.5;
     textMesh.position.y = -1.5;
-
-    scene.add(textMesh);
 
     // renderAnimate();
     // app.startShow = true;
@@ -415,7 +412,6 @@ window.addEventListener( 'mousemove', onMouseMove, false );
 let preAnimID;
 const preLoadAnimation = function(){
     preAnimID = requestAnimationFrame(preLoadAnimation);
-    console.log("prelog");
     realAsteroid.rotation.x +=0.1;
     renderer.render(scene, camera);
 }
