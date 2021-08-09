@@ -21,7 +21,7 @@ section{
 
 h1{
     color: white;
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
     font-weight: normal;
     font-size: 55px;
 
@@ -36,7 +36,7 @@ h1{
     color:white;
     font-size: 100px;
     /* font-weight: bold; */
-    font-family: 'ZCOOL XiaoWei', serif;
+    /* font-family: 'ZCOOL XiaoWei', serif; */
     
     margin-bottom: 100px;
     margin: 5px;
@@ -63,7 +63,7 @@ canvas{
 
 button{
     
-    font-family: times;
+    /* font-family: times; */
     /* font-weight: bold; */
     font-size: 40px;
     color: white;
@@ -89,7 +89,7 @@ button:active{
     font-size: 50px;
     color: white;
     text-shadow: 2px 2px rebeccapurple;
-    font-family: 'ZCOOL XiaoWei', serif;
+    /* font-family: 'ZCOOL XiaoWei', serif; */
     /* border: 3px solid #75e729; */
 }
 
@@ -108,7 +108,7 @@ button:active{
 
     font-size: 100px;
     text-shadow: 5px 5px red;
-    font-family: 'SimHei';
+    /* font-family: 'SimHei'; */
     padding: 30px;
     border-bottom: 10px solid white;
 
@@ -124,7 +124,7 @@ button:active{
     margin: 0;
     margin-top: 30px;
 
-    font-family: 'MingLiU';
+    /* font-family: 'MingLiU'; */
 }
 
 .result p{
