@@ -65,6 +65,9 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
 
     scene.add(textMesh);
 
+    cancelAnimationFrame(preAnimID);
+    scene.remove(realAsteroid);
+
     animate();
     renderAnimate();
     app.startShow = true;
@@ -226,9 +229,6 @@ let startBlinkTime;
 startBlinkTime = Date.now();
 
 const animate = function () {
-
-    cancelAnimationFrame(preAnimID);
-    scene.remove(realAsteroid);
 
     requestAnimationFrame( animate );
 
