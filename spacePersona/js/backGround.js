@@ -11,6 +11,8 @@ let clock = new THREE.Clock();
 
 let i;
 
+let allLoaded = 0;
+
 var asteroids = ['/spacePersona/img/asteroid0.glb','/spacePersona/img/asteroid1.glb','/spacePersona/img/fakeAsteroid.glb'];
 const asteroidModels = [];
 
@@ -24,6 +26,8 @@ for ( i = 0; i < asteroids.length; i++) {
         asteroidModels[asteroidModels.length] = gltf.scene;
 
         gltf.scene.position.y = Math.random()*-4+2;
+
+        allLoaded += 1;
     
     
     }, undefined, function ( error ) {
@@ -73,11 +77,16 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
         scene.remove(realAsteroid);
     }
     
-    scene.add(textMesh);
-    app.startShow = true;
+    allLoaded += 1;
+
+    if(allLoaded >= 5){
+        app.startShow = true;
+        scene.add(textMesh);
+        renderAnimate();
+    }
+
 
     animate();
-    renderAnimate();
 
 }, function ( xhr ) {
 
@@ -194,7 +203,12 @@ textLoader.load( '/spacePersona/img/font.json', function ( font ) {
     textMesh.position.x = -0.5;
     textMesh.position.y = -1.5;
 
-    // renderAnimate();
+    allLoaded += 1;
+
+    if(allLoaded >= 5){
+        scene.add(textMesh);
+        renderAnimate();
+    }
     // app.startShow = true;
 } );
 
