@@ -1,5 +1,7 @@
-/* @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300&display=swap'); */
+/* Disable double tap to zoom */
+.disable-dbl-tap-zoom {
+    touch-action: manipulation;
+}
 
 body{
     margin: 0;
