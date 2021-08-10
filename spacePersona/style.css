@@ -192,6 +192,13 @@ hr{
     text-shadow: 3px 3px red;
 }
 
+#downArrow{
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
