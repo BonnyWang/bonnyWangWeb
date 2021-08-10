@@ -63,14 +63,21 @@ satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
     satelliteModel.position.y = -2.5;
     satelliteModel.position.z = 0;
 
-    scene.add(textMesh);
 
-    cancelAnimationFrame(preAnimID);
-    scene.remove(realAsteroid);
+    if(typeof preAnimID !== 'undefined'){
+        cancelAnimationFrame(preAnimID);
+        
+    }
+
+    if(typeof realAsteroid !== 'undefined'){
+        scene.remove(realAsteroid);
+    }
+    
+    scene.add(textMesh);
+    app.startShow = true;
 
     animate();
     renderAnimate();
-    app.startShow = true;
 
 }, function ( xhr ) {
 
