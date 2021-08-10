@@ -99,10 +99,6 @@ button:active{
     height: 70%;
     display: inline;
 
-
-}
-
-.result div{
     overflow: scroll;
 }
 
