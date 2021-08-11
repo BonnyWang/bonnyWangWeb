@@ -21,13 +21,17 @@ section{
     display: grid;
 }
 
+.Options{
+    width: 60vw;
+}
+
 h1{
     color: white;
     /* font-family: 'Times New Roman', Times, serif; */
     font-weight: normal;
     font-size: 55px;
 
-    /* background-color: black; */
+    background-color: black;
 }
 
 /* #q1{
@@ -106,6 +110,7 @@ button:active{
 
 .result h1{
     /* width:; */
+    background-color: transparent;
     height: fit-content;
 
     font-size: 100px;
