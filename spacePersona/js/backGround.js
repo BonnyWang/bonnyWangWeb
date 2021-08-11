@@ -206,6 +206,7 @@ textLoader.load( '/spacePersona/img/font.json', function ( font ) {
     allLoaded += 1;
 
     if(allLoaded >= 5){
+        app.startShow = true;
         scene.add(textMesh);
         renderAnimate();
     }
