@@ -381,8 +381,9 @@ function onMouseMove( event ) {
 	// calculate mouse position in normalized device coordinates
 	// (-1 to +1) for both components
 
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+	mouse.x = event.touches[0].clientX - window.innerWidth/2;
+	mouse.y = event.touches[0].clientY - window.innerHeight/2;
 
 }
 
@@ -391,31 +392,47 @@ var clickDetectionID;
 function renderAnimate() {
 
     clickDetectionID = requestAnimationFrame(renderAnimate);
+      
+    cube.position.x += mouse.x*0.00002;
+    logoGroup.position.x += mouse.x*0.00002;
+    textMesh.position.x += mouse.x*0.00001;
 
+    if(textMesh.position.x >= 1){
+        app.showQ1();
+
+        cube.position.x = 0;
+        logoGroup.position.x = 0;
+
+        scaleDownLogo();
+
+        scene.remove(textMesh);
+        cancelAnimationFrame(clickDetectionID);
+    }
 
 	// update the picking ray with the camera and mouse position
-	raycaster.setFromCamera( mouse, camera );
 
-	// calculate objects intersecting the picking ray
-	const intersects = raycaster.intersectObjects( scene.children );
+	// raycaster.setFromCamera( mouse, camera );
 
-	for (i = 0; i < intersects.length; i ++ ) {
+	// // calculate objects intersecting the picking ray
+	// const intersects = raycaster.intersectObjects( scene.children );
+
+	// for (i = 0; i < intersects.length; i ++ ) {
 
 
-        if(intersects[i].object == textMesh){
-            console.log("Text clicked");
-            app.showQ1();
-            scaleDownLogo();
+    //     if(intersects[i].object == textMesh){
+    //         console.log("Text clicked");
+    //         app.showQ1();
+    //         scaleDownLogo();
 
-            scene.remove(textMesh);
-            cancelAnimationFrame(clickDetectionID);
-        }
+    //         scene.remove(textMesh);
+    //         cancelAnimationFrame(clickDetectionID);
+    //     }
 
-		intersects[ i ].object.material.color.set( 0x000000 );
+	// 	intersects[ i ].object.material.color.set( 0x000000 );
 
-	}
+	// }
     
-    if(textMesh.position.x >= -0.2){
+    if(textMesh.position.x >= -0.2 && (mouse.x == 0)){
         textMesh.position.x = -1.5;
     }
 
@@ -425,7 +442,7 @@ function renderAnimate() {
 
 }
 
-window.addEventListener( 'mousemove', onMouseMove, false );
+document.addEventListener('touchmove', onMouseMove);
 
 
 
