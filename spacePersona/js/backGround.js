@@ -397,7 +397,7 @@ function renderAnimate() {
     logoGroup.position.x += mouse.x*0.00002;
     textMesh.position.x += mouse.x*0.00001;
 
-    if(textMesh.position.x >= 1){
+    if(textMesh.position.x >= 0.5){
         app.showQ1();
 
         cube.position.x = 0;
