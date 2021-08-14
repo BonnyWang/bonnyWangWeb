@@ -33,7 +33,7 @@ document.body.appendChild( renderer.domElement );
 
 // Add a normal map texture material to the cube
 const textureloader = new THREE.TextureLoader();
-const normalTexture = textureloader.load('/img/asteroidNormal.png');
+const normalTexture = textureloader.load('/spacePersona/img/asteroidNormal.png');
 
 const normalMaterial = new THREE.MeshStandardMaterial();
 normalMaterial.metalness = 0.1;
@@ -348,7 +348,7 @@ export default resultLoad;
 
 
 const loadAsteroids = function(){
-    const asteroids = ['/img/asteroid0.glb','/img/asteroid1.glb','/img/fakeAsteroid.glb'];
+    const asteroids = ['/spacePersona/img/asteroid0.glb','/spacePersona/img/asteroid1.glb','/spacePersona/img/fakeAsteroid.glb'];
 
     for ( i = 0; i < asteroids.length; i++) {
         loaders[i] = new THREE.GLTFLoader();
@@ -379,7 +379,7 @@ const loadAsteroids = function(){
 
 const loadRealAsteroid = function(){
     const realAstoidLoader = new THREE.GLTFLoader();
-    realAstoidLoader.load("/img/realAsteroid.glb", function ( gltf ) {
+    realAstoidLoader.load("/spacePersona/img/realAsteroid.glb", function ( gltf ) {
 
         realAsteroid = gltf.scene;
 
@@ -401,7 +401,7 @@ const loadText = function(){
     // Load 3D text
     const textLoader = new THREE.FontLoader();
 
-    textLoader.load( '/img/font.json', function ( font ) {
+    textLoader.load( '/spacePersona/img/font.json', function ( font ) {
 
         const textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
             font: font,
@@ -433,7 +433,7 @@ const loadText = function(){
 const loadSatellite = function(){
 
     const satelliteLoader = new THREE.GLTFLoader();
-    satelliteLoader.load("/img/satellite.glb", function ( gltf ) {
+    satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
 
         scene.add( gltf.scene );
 
@@ -481,7 +481,7 @@ const loadSatellite = function(){
 loadAsteroids();
 document.addEventListener('touchmove', onMouseMove);
 
-// loader.load( '/img/asteroid1.glb', function ( gltf ) {
+// loader.load( '/spacePersona/img/asteroid1.glb', function ( gltf ) {
 
 // 	scene.add( gltf.scene );
 
