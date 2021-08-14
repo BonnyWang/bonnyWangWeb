@@ -393,7 +393,7 @@ const loadRealAsteroid = function(){
         // }
         
     }, function(xhr){
-        app.loadProgress = 1000+Math.floor(xhr.loaded / xhr.total* 100);
+        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
     }, function ( error ) {
 
         console.error( error );
@@ -407,23 +407,21 @@ const loadText = function(){
 
     textLoader.load( '/spacePersona/img/font.json', function ( font ) {
 
-        app.loadProgress = 2222;
-        const textGeometry = new THREE.TextGeometry( '>>动进入矿时代', {
+        const textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
             font: font,
             size: 0.2,
             height: 0.1,
         } );
 
-        app.loadProgress = 2223;
+
         const textMeterial = new THREE.MeshStandardMaterial({color: 0x11ff00});
         textMesh = new THREE.Mesh(textGeometry, textMeterial);
 
-        app.loadProgress = 2224;
+
         textMesh.position.x = -0.5;
         textMesh.position.y = -1.5;
         
         allLoaded += 1;
-        app.loadProgress = 2225;
         loadSatellite();
 
 
@@ -433,9 +431,9 @@ const loadText = function(){
             // renderAnimate();
         // }
     },function(xhr){
-        app.loadProgress = 2000+ Math.floor(xhr.loaded / xhr.total* 100);
+        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
     },function(err){
-        app.loadProgress = -100;
+        console.log("text load Error")
     });
 
 }
@@ -481,11 +479,11 @@ const loadSatellite = function(){
 
         console.log(xhr.loaded / xhr.total);
 
-        app.loadProgress = 3000+Math.floor(xhr.loaded / xhr.total* 100);
+        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
 
     }, function ( error ) {
 
-        app.loadProgress = 3000+Math.floor(xhr.loaded / xhr.total* 100);
+        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
         console.error( error );
 
     } );

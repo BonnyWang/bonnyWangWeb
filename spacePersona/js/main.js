@@ -34,10 +34,12 @@ var app = new Vue({
       },
 
       calResolution: function(){
-        // if(screen.width >= 600){
-        //   alert("请使用手机打开网页！");
-        //   document.body.style.display = 'none';
-        // }
+        if(screen.width >= 600){
+          alert("请使用手机打开网页！");
+          document.body.style.display = 'none';
+        }
+        // To avoid any possible errors
+        Cache.delete();
       },
 
       calcResult: function (event){
