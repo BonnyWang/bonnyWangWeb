@@ -408,7 +408,7 @@ const loadText = function(){
     textLoader.load( '/spacePersona/img/font.json', function ( font ) {
 
         app.loadProgress = 2222;
-        const textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
+        const textGeometry = new THREE.TextGeometry( '>>动进入矿时代', {
             font: font,
             size: 0.2,
             height: 0.1,
