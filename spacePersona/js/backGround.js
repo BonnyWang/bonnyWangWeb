@@ -407,22 +407,25 @@ const loadText = function(){
 
     textLoader.load( '/spacePersona/img/font.json', function ( font ) {
 
+        app.loadProgress = 2222;
         const textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
             font: font,
             size: 0.2,
             height: 0.1,
         } );
 
+        app.loadProgress = 2223;
         const textMeterial = new THREE.MeshStandardMaterial({color: 0x11ff00});
         textMesh = new THREE.Mesh(textGeometry, textMeterial);
 
+        app.loadProgress = 2224;
         textMesh.position.x = -0.5;
         textMesh.position.y = -1.5;
-
+        
         allLoaded += 1;
-
+        app.loadProgress = 2225;
         loadSatellite();
-        app.loadProgress = 2222;
+
 
         // if(allLoaded >= 5){
             // app.startShow = true;
