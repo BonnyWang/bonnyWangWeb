@@ -13,121 +13,19 @@ let i;
 
 let allLoaded = 0;
 
-var asteroids = ['/spacePersona/img/asteroid0.glb','/spacePersona/img/asteroid1.glb','/spacePersona/img/fakeAsteroid.glb'];
+// Models using GLTFLoaders
 const asteroidModels = [];
-
-for ( i = 0; i < asteroids.length; i++) {
-    loaders[i] = new THREE.GLTFLoader();
-    loaders[i].load( asteroids[i], function ( gltf ) {
-
-        scene.add( gltf.scene );
-
-        // Need to be careful here since the load function is ashynchronous
-        asteroidModels[asteroidModels.length] = gltf.scene;
-
-        gltf.scene.position.y = Math.random()*-4+2;
-
-        allLoaded += 1;
-    
-    
-    }, undefined, function ( error ) {
-    
-        console.error( error );
-    
-    } );
-    
-}
-
 let realAsteroid;
-const realAstoidLoader = new THREE.GLTFLoader();
-realAstoidLoader.load("/spacePersona/img/realAsteroid.glb", function ( gltf ) {
-
-    realAsteroid = gltf.scene;
-
-    if(!app.startShow){
-        scene.add( gltf.scene );
-
-        preLoadAnimation();
-    }
-    
-}, undefined, function ( error ) {
-
-    console.error( error );
-
-} );
-
-
-// Load satellite model
 let satelliteModel;
-
-let satelliteLoader = new THREE.GLTFLoader();
-satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
-
-    scene.add( gltf.scene );
-
-    satelliteModel = gltf.scene;
-    satelliteModel.position.x = -1;
-    satelliteModel.position.y = -2.5;
-    satelliteModel.position.z = 0;
+let textMesh;
 
 
-    if(typeof preAnimID !== 'undefined'){
-        cancelAnimationFrame(preAnimID);
-        
-    }
-
-    if(typeof realAsteroid !== 'undefined'){
-        scene.remove(realAsteroid);
-    }
-    
-    allLoaded += 1;
-
-    if(allLoaded >= 5){
-        app.startShow = true;
-        scene.add(textMesh);
-        renderAnimate();
-    }
-
-
-    animate();
-
-}, function ( xhr ) {
-
-    console.log(xhr.loaded / xhr.total);
-
-    app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
-
-}, function ( error ) {
-
-    console.error( error );
-
-} );
-
-
-// loader.load( '/spacePersona/img/asteroid1.glb', function ( gltf ) {
-
-// 	scene.add( gltf.scene );
-
-//     asteroidModel = gltf.scene;
-
-//     // var animations = gltf.animations;
-    
-//     // mixer = new THREE.AnimationMixer( gltf.scene);
-
-//     // var action = mixer.clipAction( animations[ 0 ] ); // access first animation clip
-//     // action.play();
-
-// }, undefined, function ( error ) {
-
-// 	console.error( error );
-
-// } );
-
-
-
+// Setting up basic ellements
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 const renderer = new THREE.WebGLRenderer({alpha:true});
+
+camera.position.z = 5;
 
 // Set and add render
 renderer.setSize( window.innerWidth, window.innerHeight );
@@ -135,7 +33,7 @@ document.body.appendChild( renderer.domElement );
 
 // Add a normal map texture material to the cube
 const textureloader = new THREE.TextureLoader();
-const normalTexture = textureloader.load('/spacePersona/img/asteroidNormal.png');
+const normalTexture = textureloader.load('/img/asteroidNormal.png');
 
 const normalMaterial = new THREE.MeshStandardMaterial();
 normalMaterial.metalness = 0.1;
@@ -188,34 +86,6 @@ logoGroup.scale.z = 0.2;
 logoGroup.position.y = -2.5;
 scene.add(logoGroup)
 
-// Load 3D text
-const textLoader = new THREE.FontLoader();
-let textMesh;
-
-textLoader.load( '/spacePersona/img/font.json', function ( font ) {
-
-	const textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
-		font: font,
-		size: 0.2,
-        height: 0.1,
-	} );
-
-    const textMeterial = new THREE.MeshStandardMaterial({color: 0x11ff00});
-    textMesh = new THREE.Mesh(textGeometry, textMeterial);
-
-    textMesh.position.x = -0.5;
-    textMesh.position.y = -1.5;
-
-    allLoaded += 1;
-
-    if(allLoaded >= 5){
-        app.startShow = true;
-        scene.add(textMesh);
-        renderAnimate();
-    }
-    // app.startShow = true;
-} );
-
 
 // Generate random color small spheres at random location
 const spheres = [];
@@ -236,8 +106,6 @@ for (let index = 0; index < 20; index++) {
 
 
 
-camera.position.z = 5;
-
 // Light
 const directionalLight = new THREE.DirectionalLight( 0xffffff, 1.5);
 scene.add(directionalLight)
@@ -253,6 +121,8 @@ scene.add( glight );
 let startBlinkTime;
 startBlinkTime = Date.now();
 
+
+// Animation functions
 const animate = function () {
 
     requestAnimationFrame( animate );
@@ -338,18 +208,6 @@ const animate = function () {
 
 var animationID;
 
-const moveElements = function () {
-    console.log("move");
-    animationID = requestAnimationFrame( moveElements );
-
-    cube.position.x -=0.02;
-    cube.position.y -= 0.04;
-
-    if (cube.position.x <=0) {
-        cancelAnimationFrame(animationID)
-    }
-}
-
 const scaleDownLogo = function(){
 
     console.log("scaleDownLogo");
@@ -380,10 +238,6 @@ const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
 function onMouseMove( event ) {
-
-	// calculate mouse position in normalized device coordinates
-	// (-1 to +1) for both components
-
 
 	mouse.x = event.touches[0].clientX - window.innerWidth/2;
 	mouse.y = event.touches[0].clientY - window.innerHeight/2;
@@ -445,7 +299,7 @@ function renderAnimate() {
 
 }
 
-document.addEventListener('touchmove', onMouseMove);
+
 
 
 
@@ -458,6 +312,7 @@ const preLoadAnimation = function(){
     renderer.render(scene, camera);
 }
 
+// Result Load Animation
 let resultLoadAnimID;
 let resultLoadStart;
 
@@ -488,4 +343,160 @@ const resultLoadAnim = function(){
 
 export default resultLoad;
 
+
+// Load Functions
+
+
+const loadAsteroids = function(){
+    const asteroids = ['/img/asteroid0.glb','/img/asteroid1.glb','/img/fakeAsteroid.glb'];
+
+    for ( i = 0; i < asteroids.length; i++) {
+        loaders[i] = new THREE.GLTFLoader();
+        loaders[i].load( asteroids[i], function ( gltf ) {
+
+            scene.add( gltf.scene );
+
+            // Need to be careful here since the load function is ashynchronous
+            asteroidModels[asteroidModels.length] = gltf.scene;
+
+            gltf.scene.position.y = Math.random()*-4+2;
+
+            allLoaded += 1;
+
+            if(allLoaded === 3){
+                loadRealAsteroid();
+            }
+        
+        }, undefined, function ( error ) {
+        
+            console.error( error );
+        
+        } );
+        
+    }
+
+}
+
+const loadRealAsteroid = function(){
+    const realAstoidLoader = new THREE.GLTFLoader();
+    realAstoidLoader.load("/img/realAsteroid.glb", function ( gltf ) {
+
+        realAsteroid = gltf.scene;
+
+        // if(!app.startShow){
+        scene.add( gltf.scene );
+
+        preLoadAnimation();
+        loadText();
+        // }
+        
+    }, undefined, function ( error ) {
+
+        console.error( error );
+
+    } );
+}
+
+const loadText = function(){
+    // Load 3D text
+    const textLoader = new THREE.FontLoader();
+
+    textLoader.load( '/img/font.json', function ( font ) {
+
+        const textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
+            font: font,
+            size: 0.2,
+            height: 0.1,
+        } );
+
+        const textMeterial = new THREE.MeshStandardMaterial({color: 0x11ff00});
+        textMesh = new THREE.Mesh(textGeometry, textMeterial);
+
+        textMesh.position.x = -0.5;
+        textMesh.position.y = -1.5;
+
+        allLoaded += 1;
+
+        loadSatellite();
+
+        // if(allLoaded >= 5){
+            // app.startShow = true;
+            // scene.add(textMesh);
+            // renderAnimate();
+        // }
+    } );
+
+}
+
+
+// Load satellite model
+const loadSatellite = function(){
+
+    const satelliteLoader = new THREE.GLTFLoader();
+    satelliteLoader.load("/img/satellite.glb", function ( gltf ) {
+
+        scene.add( gltf.scene );
+
+        satelliteModel = gltf.scene;
+        satelliteModel.position.x = -1;
+        satelliteModel.position.y = -2.5;
+        satelliteModel.position.z = 0;
+
+        console.log("loaded satellite");
+
+
+        if(typeof preAnimID !== 'undefined'){
+            cancelAnimationFrame(preAnimID);
+            
+        }
+
+        if(typeof realAsteroid !== 'undefined'){
+            scene.remove(realAsteroid);
+        }
+        
+        allLoaded += 1;
+
+        // if(allLoaded >= 5){
+            app.startShow = true;
+            scene.add(textMesh);
+            renderAnimate();
+        // }
+
+
+        animate();
+
+    }, function ( xhr ) {
+
+        console.log(xhr.loaded / xhr.total);
+
+        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
+
+    }, function ( error ) {
+
+        console.error( error );
+
+    } );
+}
+
+loadAsteroids();
+document.addEventListener('touchmove', onMouseMove);
+
+// loader.load( '/img/asteroid1.glb', function ( gltf ) {
+
+// 	scene.add( gltf.scene );
+
+//     asteroidModel = gltf.scene;
+
+//     // var animations = gltf.animations;
+    
+//     // mixer = new THREE.AnimationMixer( gltf.scene);
+
+//     // var action = mixer.clipAction( animations[ 0 ] ); // access first animation clip
+//     // action.play();
+
+// }, undefined, function ( error ) {
+
+// 	console.error( error );
+
+// } );
 

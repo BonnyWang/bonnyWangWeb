@@ -10,6 +10,7 @@
 <body>
   <script src="./js/three.js"></script>
   <script src="./js/GLTFLoader.js"></script>
+  <script type="module" src="./js/html2canvas.min.js"></script>
   <script type="module" src="./js/backGround.js"></script>
 
   <div id="app">
@@ -122,7 +123,7 @@
       </div>
     </section>
   </transition>
-    <section class="result" v-if="qShowIndex === 9">
+    <section class="result" id="mResult" v-if="qShowIndex === 9">
       <h1>
         {{resultPersona}}
       </h1>
@@ -156,6 +157,8 @@
       <p style="text-align: center;">
         中国第一家致力于太空资源开采及利用的商业公司
       </p>
+      <button v-on:click="generateImage">生成专属指南</button>
+      <canvas id="imageResult"></canvas>
      
     </section>
     <div v-if="qShowIndex === 9" class="downArrow">

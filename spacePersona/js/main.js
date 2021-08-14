@@ -66,7 +66,7 @@ var app = new Vue({
             this.resultPersona = "无私拯救者";
             this.resultDes = "矿时代文明守护者";
             this.resultText = "你对家园与宇宙生态都有着超乎寻常的责任感，比起抢占资源，你更希望能够保护你所爱的一切免受灾害的影响。";
-            this.resultAdvice = "小行星采矿不仅可以帮助人类收获资源，也可以服务于清理太空垃圾。如果人类不断发射航天器并不进行回收，产生的碎片将使得人类再也走不出地球。同时，与地球轨道相近的小行星也可能对人类文明带来灭顶之灾，例如2029年一颗叫做Aposis就将接近地球。";
+            this.resultAdvice = "小行星采矿不仅可以帮助人类收获资源，也可以服务于清理太空垃圾。如果人类不断发射航天器并不进行回收，产生的碎片将使得人类再也走不出地球。同时，与地球轨道相近的小行星也可能对人类文明带来灭顶之灾，例如2029年一颗叫做Aposis就将比月球更接近地球。";
             break;
           case 4:
             this.resultPersona = "星际大艺术家";
@@ -78,7 +78,7 @@ var app = new Vue({
             this.resultPersona = "太空预言家";
             this.resultDes = "拥有远见的未来主义者";
             this.resultText = "比起眼前的利益，你更喜欢长远地布局未来。这在太空时代是必不可少的特质之一，结合现有信息以及你的远见，你在太空时代越走越远。";
-            this.resultAdvice = "人类走向宇宙，一定不会是一个迅速的过程。而小行星采矿背后巨大地商业利益，也许可以成为推动人类走出地球地契机。";
+            this.resultAdvice = "人类走向宇宙，一定不会是一个迅速的过程。而小行星采矿背后巨大地商业利益，也许可以成为推动人类走出地球的契机。";
             break;
           case 6:
             this.resultPersona = "宇宙践行者";
@@ -95,6 +95,17 @@ var app = new Vue({
           default:
             this.resultPersona = "神秘的未知漫游者"
         }
+      },
+
+      generateImage:function(){
+        console.log("Generate Image");
+        document.getElementById("mResult").style.height = '5000px';
+        document.getElementById("mResult").scrollTo(0,0);
+
+        html2canvas(document.body, {windowHeight:5000}).then(function(canvas) {
+          document.body.appendChild(canvas);
+          console.log(canvas)
+        });
       }
     },
     mounted:function(){
