@@ -38,8 +38,6 @@ var app = new Vue({
           alert("请使用手机打开网页！");
           document.body.style.display = 'none';
         }
-        // To avoid any possible errors
-        Cache.delete();
       },
 
       calcResult: function (event){
