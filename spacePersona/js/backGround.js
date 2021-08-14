@@ -367,7 +367,9 @@ const loadAsteroids = function(){
                 loadRealAsteroid();
             }
         
-        }, undefined, function ( error ) {
+        }, function(xhr){
+            app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
+        }, function ( error ) {
         
             console.error( error );
         
@@ -390,7 +392,9 @@ const loadRealAsteroid = function(){
         loadText();
         // }
         
-    }, undefined, function ( error ) {
+    }, function(xhr){
+        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
+    }, function ( error ) {
 
         console.error( error );
 
@@ -424,7 +428,9 @@ const loadText = function(){
             // scene.add(textMesh);
             // renderAnimate();
         // }
-    } );
+    },function(xhr){
+        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
+    });
 
 }
 
