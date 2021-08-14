@@ -405,11 +405,11 @@ const loadText = function(){
     // Load 3D text
     const textLoader = new THREE.FontLoader();
 
-    textLoader.load( '/spacePersona/img/font.json', function ( font ) {
+    textLoader.load( '/spacePersona/img/font.json', function ( mfont ) {
 
         app.loadProgress = 2222;
         let textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
-            font: font,
+            font: mfont,
             size: 0.2,
             height: 0.1,
         } );
