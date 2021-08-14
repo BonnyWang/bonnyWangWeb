@@ -422,6 +422,7 @@ const loadText = function(){
         allLoaded += 1;
 
         loadSatellite();
+        app.loadProgress = 2222;
 
         // if(allLoaded >= 5){
             // app.startShow = true;
@@ -479,6 +480,7 @@ const loadSatellite = function(){
 
     }, function ( error ) {
 
+        app.loadProgress = 3000+Math.floor(xhr.loaded / xhr.total* 100);
         console.error( error );
 
     } );
