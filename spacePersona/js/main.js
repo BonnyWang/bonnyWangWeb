@@ -1,3 +1,5 @@
+import resultLoad from "./backGround.js";
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -31,8 +33,16 @@ var app = new Vue({
         this.qShowIndex = 0;
       },
 
+      calResolution: function(){
+        if(screen.width >= 600){
+          alert("请使用手机打开网页！");
+          document.body.style.display = 'none';
+        }
+      },
+
       calcResult: function (event){
         let resultProperty = indexOfMax(this.properties);
+        resultLoad();
         switch(resultProperty) {
           case 0:
             this.resultPersona = "科学狂人";
@@ -86,6 +96,9 @@ var app = new Vue({
             this.resultPersona = "神秘的未知漫游者"
         }
       }
+    },
+    mounted:function(){
+      this.calResolution();
     }
   })
 

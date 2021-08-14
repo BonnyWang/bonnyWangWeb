@@ -43,9 +43,12 @@ const realAstoidLoader = new THREE.GLTFLoader();
 realAstoidLoader.load("/spacePersona/img/realAsteroid.glb", function ( gltf ) {
 
     realAsteroid = gltf.scene;
-    scene.add( gltf.scene );
 
-    preLoadAnimation();
+    if(!app.startShow){
+        scene.add( gltf.scene );
+
+        preLoadAnimation();
+    }
     
 }, undefined, function ( error ) {
 
@@ -191,7 +194,7 @@ let textMesh;
 
 textLoader.load( '/spacePersona/img/font.json', function ( font ) {
 
-	const textGeometry = new THREE.TextGeometry( '>>进入矿时代', {
+	const textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
 		font: font,
 		size: 0.2,
         height: 0.1,
@@ -455,5 +458,34 @@ const preLoadAnimation = function(){
     renderer.render(scene, camera);
 }
 
+let resultLoadAnimID;
+let resultLoadStart;
+
+const resultLoad = function(){
+    resultLoadStart = Date.now();
+    resultLoadAnim();
+}
+
+const resultLoadAnim = function(){
+    resultLoadAnimID = requestAnimationFrame(resultLoadAnim);
+    scene.add(realAsteroid);
+
+    realAsteroid.rotation.y += 0.3;
+    realAsteroid.scale.x += 0.005;
+    realAsteroid.scale.y += 0.005;
+    realAsteroid.scale.z += 0.005;
+
+    if(Date.now() - resultLoadStart >= 2500){
+        scene.remove(realAsteroid);
+        cancelAnimationFrame(resultLoadAnimID);
+        app.qShowIndex += 1;
+        
+    }
+
+    console.log("loadingResult");
+    
+}
+
+export default resultLoad;
 
 
