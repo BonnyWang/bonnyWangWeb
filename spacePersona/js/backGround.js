@@ -393,7 +393,7 @@ const loadRealAsteroid = function(){
         // }
         
     }, function(xhr){
-        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
+        app.loadProgress = 1000+Math.floor(xhr.loaded / xhr.total* 100);
     }, function ( error ) {
 
         console.error( error );
@@ -429,7 +429,7 @@ const loadText = function(){
             // renderAnimate();
         // }
     },function(xhr){
-        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
+        app.loadProgress = 2000+ Math.floor(xhr.loaded / xhr.total* 100);
     });
 
 }
@@ -475,7 +475,7 @@ const loadSatellite = function(){
 
         console.log(xhr.loaded / xhr.total);
 
-        app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
+        app.loadProgress = 3000+Math.floor(xhr.loaded / xhr.total* 100);
 
     }, function ( error ) {
 
