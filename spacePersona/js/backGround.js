@@ -434,9 +434,9 @@ const loadText = function(){
         // }
     },function(xhr){
         app.loadProgress = 2000+ Math.floor(xhr.loaded / xhr.total* 100);
-    }),function(err){
-        app.loadProgress = -100；
-    };
+    },function(err){
+        app.loadProgress = -100;
+    });
 
 }
 
