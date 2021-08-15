@@ -110,9 +110,15 @@ var app = new Vue({
 
 
         html2canvas(document.body, {scrollX: 0, scrollY: -window.scrollY,backgroundColor:'#000000'}).then(function(canvas) {
-          canvas.style.position = "absolute";
-          document.body.appendChild(canvas);
-          console.log(canvas)
+          
+          // document.body.appendChild(canvas);
+          console.log(canvas);
+          
+          var imgGenerated = new Image();
+          imgGenerated.src = canvas.toDataURL();
+          document.body.appendChild(imgGenerated);
+          imgGenerated.style.position = "absolute";
+
         });
       }
     },
