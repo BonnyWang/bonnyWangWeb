@@ -19,6 +19,8 @@
 </script>
 
   <div id="app">
+    <audio id="bgm" src="./img/bgm.wav" controls autoplay loop hidden></audio>
+    <button v-on:click="playMusic" id="playBgm"> #></button>
     <section id="loading" v-if="(!startShow) && (qShowIndex == -1)">
       <h1>Loading {{loadProgress}}%..</h1>
     </section>

@@ -120,6 +120,17 @@ var app = new Vue({
           document.getElementById("app").style.display = 'none';
 
         });
+      },
+      playMusic: function(){
+        const bgm = document.getElementById("bgm");
+        const playButton = document.getElementById("playBgm")
+        if(bgm.paused){
+          bgm.play();
+          playButton.style.backgroundColor = "red";
+        }else{
+          bgm.pause();
+          playButton.style.backgroundColor = "black";
+        }
       }
     },
     mounted:function(){

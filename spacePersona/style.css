@@ -87,6 +87,20 @@ button:active{
     background-color: #013cff;
 }
 
+#playBgm{
+    position: fixed;
+    top: 5%;
+    right: 10%;
+    width: fit-content;
+    border: none;
+
+    background-color: red;
+}
+
+#playBgm:active{
+    background-color: black;
+}
+
 #startButton {
     background: none;
     background-image: url('./img/startB.png');
