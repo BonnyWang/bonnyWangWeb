@@ -111,13 +111,13 @@ var app = new Vue({
 
         html2canvas(document.body, {scrollX: 0, scrollY: -window.scrollY,backgroundColor:'#000000'}).then(function(canvas) {
           
-          // document.body.appendChild(canvas);
-          console.log(canvas);
-          
           var imgGenerated = new Image();
           imgGenerated.src = canvas.toDataURL();
           document.body.appendChild(imgGenerated);
-          imgGenerated.style.position = "absolute";
+          imgGenerated.style.position = 'absolute';
+          imgGenerated.style.width = '100%';
+
+          document.getElementById("app").style.display = 'none';
 
         });
       }
