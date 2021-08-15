@@ -99,10 +99,18 @@ var app = new Vue({
 
       generateImage:function(){
         console.log("Generate Image");
-        document.getElementById("mResult").style.height = '5000px';
         document.getElementById("mResult").scrollTo(0,0);
+        document.getElementById("mResult").style.height = 'fit-content';
+        document.getElementById("mResult").style.position = 'inherit';
+        
+        document.body.style.overflowY = 'scroll';
+        document.body.style.padding = '60px';
+        document.getElementById("threeBackGround").style.display = 'none';
+        document.getElementById("downArrow").style.display = 'none';
 
-        html2canvas(document.body, {windowHeight:5000}).then(function(canvas) {
+
+        html2canvas(document.body, {scrollX: 0, scrollY: -window.scrollY,backgroundColor:'#000000'}).then(function(canvas) {
+          canvas.style.position = "absolute";
           document.body.appendChild(canvas);
           console.log(canvas)
         });

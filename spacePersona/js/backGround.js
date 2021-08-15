@@ -29,7 +29,9 @@ camera.position.z = 5;
 
 // Set and add render
 renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+
+renderer.domElement.setAttribute("id", "threeBackGround")
+document.body.appendChild( renderer.domElement);
 
 // Add a normal map texture material to the cube
 const textureloader = new THREE.TextureLoader();
