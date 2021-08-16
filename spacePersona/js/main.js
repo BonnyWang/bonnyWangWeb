@@ -8,7 +8,7 @@ var app = new Vue({
       
       resultDes:'该身份无已知信息',
       resultText:'N/A',
-      resultAdvice:'自由地野蛮生长吧',
+      resultAdvice:'自由地野蛮生长吧！',
       startShow:false,
       qShowIndex: -1,
 
@@ -49,13 +49,13 @@ var app = new Vue({
             this.resultPersona = "科学狂人";
             this.resultDes = "矿时代的学术领袖";
             this.resultText = "浮躁的太空淘金时代中，你仍然对人类，对宇宙怀有好奇，而正是这一份好奇推动着人类的知识的疆界。";
-            this.resultAdvice = "从太空中获取的资源并不只有经济、生产价值，将宇宙中获取的物质用于你的学术研究，对你了解小行星的形成乃至到世界的形成都有巨大帮助。";
+            this.resultAdvice = "从太空中获取的资源并不只有经济、生产价值，将宇宙中获取的物质用于你的学术研究，对你了解小行星的形成乃至到世界的形成都有巨大帮助。随着信息地不断积累，你也许可以获得无限接近于真相的真相";
             break;
           case 1:
             this.resultPersona = "矿时代亿万富翁";
             this.resultDes = "手握宇宙无限资源";
             this.resultText = "在宇宙采矿时代，你擅长平衡各方面资源，也善于发现新的财富机会，将成为矿时代的第一批亿万富翁。";
-            this.resultAdvice = "小行星上蕴含着巨大的经济价值，仅一颗灵神星就有让世界经济崩溃的力量，通过开采地球上像铂金一样少有或是开采难度大的重金属，你将快速收获财富。";
+            this.resultAdvice = "小行星上蕴含着巨大的经济价值，仅一颗灵神星就有让世界经济崩溃的力量，通过开采地球上像铂金一样少有或是开采难度大的重金属，你将快速收获财富。同时，在开采过程中控制成本也非常重要，在太空中3D打印卫星，可以大大减少逃离地球引力所需的能源。";
             break;
           case 2:
             this.resultPersona = "采矿工程师";
@@ -72,26 +72,26 @@ var app = new Vue({
           case 4:
             this.resultPersona = "星际大艺术家";
             this.resultDes = "宇宙的浪漫不止";
-            this.resultText = "在大家都疯狂收集资源的时代，你依然有着浪漫的艺术情怀，比起外面的世界，你也希望在知识爆炸的新时代探索自己，创造自己的世界。";
-            this.resultAdvice = "随着人类对太空资源的开采，人类对宇宙的了解也越来越多，新的灵感将不断涌现，关于人类起源、宇宙起源的艺术创作将引领大众了解更多以往世界未知的美丽。";
+            this.resultText = "在大家都疯狂收集资源的时代，你依然有着浪漫的艺术情怀，比起外面的世界，你也希望在知识爆炸的新时代探索自己，从内心出发，在这个独一无二的时代，创造独属自己的世界。";
+            this.resultAdvice = "随着人类对太空资源的开采，人类对宇宙的了解也越来越多，新的灵感将不断涌现，关于人类起源、宇宙起源的艺术创作，将引领大众了解更多以往世界未知的美丽。";
             break;
           case 5:
             this.resultPersona = "太空预言家";
             this.resultDes = "拥有远见的未来主义者";
-            this.resultText = "比起眼前的利益，你更喜欢长远地布局未来。这在太空时代是必不可少的特质之一，结合现有信息以及你的远见，你在太空时代越走越远。";
-            this.resultAdvice = "人类走向宇宙，一定不会是一个迅速的过程。而小行星采矿背后巨大地商业利益，也许可以成为推动人类走出地球的契机。";
+            this.resultText = "比起眼前的利益，你更喜欢长远地布局未来。这在太空时代是必不可少的特质之一，结合现有信息以及你的远见，你将在太空时代越走越远。";
+            this.resultAdvice = "人类走向宇宙，一定不会是一个迅速的过程。而小行星采矿背后巨大地商业利益，也许可以成为推动人类走出地球的契机。以此为基点，你将展望未来无限的可能性。";
             break;
           case 6:
             this.resultPersona = "宇宙践行者";
             this.resultDes = "太空实战家";
-            this.resultText = "你不仅仅满足于纸上谈兵，遨游太空、星际旅行这些听起来像科幻小说一般的事情，在你的一腔热忱中变成现实。";
-            this.resultAdvice = "由于人类对太空的了解仍然有限，从事任何航天活动都需要大量实验来检验可行性。这其中会花费无数的人力和资源，但如果没有人去做，就不会实现。";
+            this.resultText = "你不仅仅满足于纸上谈兵，遨游太空、星际旅行这些听起来像科幻小说一般的事情，在你的一腔热忱和不断实验中将变成现实。";
+            this.resultAdvice = "由于人类对太空的了解仍然有限，从事任何航天活动都需要大量实验来检验可行性。这其中会花费无数的人力和资源，但如果没有人去做，就不会实现。而你，就是推动这一切的源动力";
             break;
           case 7:
             this.resultPersona = "星际规划师";
             this.resultDes = "谨慎的决策领袖";
-            this.resultText = "你仔细的策划与部署大大降低了人类各项宇宙计划实施的风险，在你的带领下，人类将创造更多的辉煌。";
-            this.resultAdvice = "宇宙中存在无数未知的危险，每一个决策都可能导向致命的结果，甚至整个文明的毁灭，只有步步为营才能成为最终赢家。";
+            this.resultText = "作为宇宙矿时代的领导者，你胆大又仔细的策划与部署大大降低了人类各项宇宙计划实施的风险，在你的带领下，人类将不断创造更多的辉煌。";
+            this.resultAdvice = "宇宙中存在无数未知的危险，每一个决策都可能导向致命的结果，甚至整个文明的毁灭，只有不断地收集更多地信息，步步为营才能成为最终赢家。";
             break;
           default:
             this.resultPersona = "神秘的未知漫游者"
@@ -125,6 +125,8 @@ var app = new Vue({
           
           document.body.style.background = 'none';
           document.body.style.padding = '0px';
+
+          document.getElementById("share").style.display = 'block';
 
         });
       },

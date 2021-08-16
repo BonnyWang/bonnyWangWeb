@@ -117,16 +117,24 @@
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 7">
-      <h1> 终于，你成功获得了小行星上的资源并将其带回了地球，你会将它用作</h1>
+      <h1> 终于，你成功获得了小行星上的资源并将其带回了地球，你会将它用作：</h1>
       <div class="Options">
-        <button v-on:click="calcResult(); qShowIndex+=1; properties[0]+=1;"> 探索小行星的形成，揭秘宇宙奥秘</button>
-        <button v-on:click="calcResult(); qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> 卖了换钱，接着通过起源太空进行太空采矿</button>
-        <button v-on:click="calcResult(); qShowIndex+=1; properties[4]+=1;"> 当作艺术品自己收藏</button>
-        <button v-on:click="calcResult(); qShowIndex+=1; properties[3]+=1; properties[4]+=1;"> 贡献给全人类，这是世界的财富</button>
+        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 探索小行星的形成，揭秘宇宙奥秘</button>
+        <button v-on:click="qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> 卖了换钱，接着通过起源太空进行太空采矿</button>
+        <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 当作艺术品自己收藏</button>
+        <button v-on:click="qShowIndex+=1; properties[3]+=1; properties[4]+=1;"> 贡献给全人类，这是世界的财富</button>
       </div>
     </section>
   </transition>
-    <section class="result" id="mResult" v-if="qShowIndex === 9">
+  <transition name="fade">
+    <section v-if="qShowIndex === 8">
+      <h1>宇宙矿时代信息收集完毕：</h1>
+      <div class="Options">
+        <button style="font-size: 50px; border: 5px #013cff solid;" v-on:click="calcResult(); qShowIndex+=1; ">揭秘你的宇宙矿时代身份!</button>
+      </div>
+    </section>
+  </transition>
+    <section class="result" id="mResult" v-if="qShowIndex === 10">
       <h1>
         {{resultPersona}}
       </h1>
@@ -160,20 +168,24 @@
       <p style="text-align: center;">
         中国第一家致力于太空资源开采及利用的商业公司
       </p>
-      <button id="generateButton" v-on:click="generateImage">生成专属指南</button>
+      <p style="text-align: center;">
+        扫码关注公众号，回复“身份指南”获得宇宙矿时代入口
+      </p>
+      <img src="./img/wechatCode.jpg">
+      <button id="generateButton" v-on:click="generateImage">生成你的专属指南</button>
       <canvas id="imageResult"></canvas>
      
     </section>
-    <div v-if="qShowIndex === 9" class="downArrow" id="downArrow">
+    <div v-if="qShowIndex === 10" class="downArrow" id="downArrow">
       <img src="./img/downArrow.gif">
       <img src="./img/downArrow.gif">
       <img src="./img/downArrow.gif">
       <img src="./img/downArrow.gif">
     </div>
-   
+    
   </div>
 
-
+  <h1 style="text-align: center; display: none;" id="share">长按图片保存即可分享</h1>
   <!-- <canvas class="webgl"></canvas> -->
   <script type="module" src="js/main.js"></script>
   
