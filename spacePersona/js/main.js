@@ -14,7 +14,7 @@ var app = new Vue({
 
       showImage: false,
       
-      resultPersona: '神秘的未知星际漫游者',
+      resultPersona: '神秘的未知星际流浪者',
 
       // 8 Properties 
       // academic:0,
@@ -25,7 +25,9 @@ var app = new Vue({
       // vision:0,
       // practical:0,
       // careful:0
-      properties:[0,0,0,0,0,0,0,0]
+      properties:[0,0,0,0,0,0,0,0],
+      bonnyProperties:[2,2,1,2,0,3,3,2],
+      polyProperties:[2,1,3,0,1,1,2,3]
     },
 
     methods: {
@@ -40,7 +42,24 @@ var app = new Vue({
           document.body.style.display = 'none';
         }
       },
+      checkSpecial: function(){
+        if(JSON.stringify(this.properties)==JSON.stringify(this.bonnyProperties)){
+          console.log("You've discovered Bonny!");
+          this.resultPersona = "博尼";
+          this.resultDes = "游戏小实习生";
+          this.resultText = "奇奇怪怪的生物，2021年7月来到起源太空";
+          this.resultAdvice = "想成为宇宙矿时代的博尼吗？真的想成为宇宙矿时代的博尼吗？真的吗？真的吗？不，博尼觉得不行。"
+        }else if(JSON.stringify(this.properties)==JSON.stringify(this.polyProperties)){
+          console.log("You've discovered WenHan!");
+          this.resultPersona = "周文翰";
+          this.resultDes = "多面体";
+          this.resultText = "即将要去法国读博士的行星科学家，苏老师的得意门生";
+          this.resultAdvice = "想要成为周文翰，你需要每天认真阅读论文，对行星防御，小行星分裂有深刻的见解。";
+        }else{
+          console.log(this.properties);
+        }
 
+      },
       calcResult: function (event){
         const resultProperty = indexOfMax(this.properties);
         resultLoad();
@@ -96,6 +115,8 @@ var app = new Vue({
           default:
             this.resultPersona = "神秘的未知漫游者"
         }
+
+        this.checkSpecial();
       },
 
       generateImage:function(){
@@ -163,8 +184,8 @@ var app = new Vue({
         }
     }
 
-    console.log(arr);
-    console.log(maxIndex);
+    // console.log(arr);
+    // console.log(maxIndex);
 
   return maxIndex;
 }
