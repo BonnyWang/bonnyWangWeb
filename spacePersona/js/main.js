@@ -34,6 +34,9 @@ var app = new Vue({
       showQ1: function (event) {
         this.startShow = false;
         this.qShowIndex = 0;
+
+        document.getElementById("bgm").src = '/img/qBgm.wav';
+        document.getElementById("bgm").play();
       },
 
       calResolution: function(){
@@ -47,13 +50,13 @@ var app = new Vue({
           console.log("You've discovered Bonny!");
           this.resultPersona = "博尼";
           this.resultDes = "游戏小实习生";
-          this.resultText = "奇奇怪怪的生物，2021年7月来到起源太空";
+          this.resultText = "奇奇怪怪的生物，2021年7月来到起源太空实习。";
           this.resultAdvice = "想成为宇宙矿时代的博尼吗？真的想成为宇宙矿时代的博尼吗？真的吗？真的吗？不，博尼觉得不行。"
         }else if(JSON.stringify(this.properties)==JSON.stringify(this.polyProperties)){
           console.log("You've discovered WenHan!");
           this.resultPersona = "周文翰";
           this.resultDes = "多面体";
-          this.resultText = "即将要去法国读博士的行星科学家，苏老师的得意门生";
+          this.resultText = "即将要去法国读博士的行星科学家，苏老师的得意门生。";
           this.resultAdvice = "想要成为周文翰，你需要每天认真阅读论文，对行星防御，小行星分裂有深刻的见解。";
         }else{
           console.log(this.properties);
@@ -63,6 +66,11 @@ var app = new Vue({
       calcResult: function (event){
         const resultProperty = indexOfMax(this.properties);
         resultLoad();
+        
+        document.getElementById("bgm").src = '/img/resultBgm.wav';
+        document.getElementById("bgm").loop = false;
+        document.getElementById("bgm").play();
+        
         switch(resultProperty) {
           case 0:
             this.resultPersona = "科学狂人";
