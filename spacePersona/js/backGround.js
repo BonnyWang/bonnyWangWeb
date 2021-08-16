@@ -211,11 +211,20 @@ const scaleDownLogo = function(){
 
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
+const mouseClick = new THREE.Vector2();
 
-function onMouseMove( event ) {
+function onTouchMove( event ) {
 
 	mouse.x = event.touches[0].clientX;
 	mouse.y = event.touches[0].clientY;
+
+}
+
+
+function onMouseMove( event ) {
+
+	mouseClick.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouseClick.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 
 }
 
@@ -245,26 +254,25 @@ function renderAnimate() {
 
 	// update the picking ray with the camera and mouse position
 
-	// raycaster.setFromCamera( mouse, camera );
+	raycaster.setFromCamera( mouseClick, camera );
 
 	// // calculate objects intersecting the picking ray
-	// const intersects = raycaster.intersectObjects( scene.children );
+	const intersects = raycaster.intersectObjects( scene.children );
 
-	// for (i = 0; i < intersects.length; i ++ ) {
+	for (i = 0; i < intersects.length; i ++ ) {
 
+        if(intersects[i].object == cube){
+            console.log("Suprise");
+            app.showQ1();
+            scaleDownLogo();
 
-    //     if(intersects[i].object == textMesh){
-    //         console.log("Text clicked");
-    //         app.showQ1();
-    //         scaleDownLogo();
-
-    //         scene.remove(textMesh);
-    //         cancelAnimationFrame(clickDetectionID);
-    //     }
-
-	// 	intersects[ i ].object.material.color.set( 0x000000 );
-
-	// }
+            scene.remove(textMesh);
+            cancelAnimationFrame(clickDetectionID);
+            cube.material.color.set(0x000000);
+            app.qShowIndex = 9;
+            resultLoad();
+        }
+	}
     
     if(textMesh.position.x >= -0.2 && (mouse.x == 0)){
         textMesh.position.x = -1.5;
@@ -504,5 +512,6 @@ const loadSatellite = function(){
 }
 
 loadAsteroids();
-document.addEventListener('touchmove', onMouseMove);
+document.addEventListener('touchmove', onTouchMove);
+document.addEventListener( 'mousemove', onMouseMove, false );
 
