@@ -11,7 +11,8 @@ var app = new Vue({
       resultAdvice:'自由地野蛮生长吧',
       startShow:false,
       qShowIndex: -1,
-      
+
+      showImage: false,
       
       resultPersona: '神秘的未知星际漫游者',
 
@@ -41,7 +42,7 @@ var app = new Vue({
       },
 
       calcResult: function (event){
-        let resultProperty = indexOfMax(this.properties);
+        const resultProperty = indexOfMax(this.properties);
         resultLoad();
         switch(resultProperty) {
           case 0:
@@ -99,17 +100,20 @@ var app = new Vue({
 
       generateImage:function(){
         console.log("Generate Image");
+        this.showImage = true;
         document.getElementById("mResult").scrollTo(0,0);
         document.getElementById("mResult").style.height = 'fit-content';
         document.getElementById("mResult").style.position = 'inherit';
         
         document.body.style.overflowY = 'scroll';
-        document.body.style.padding = '60px';
+        document.body.style.padding = '70px';
         document.getElementById("threeBackGround").style.display = 'none';
         document.getElementById("downArrow").style.display = 'none';
+        document.getElementById("playBgm").style.display = 'none';
+        document.getElementById("generateButton").style.display = 'none';
 
 
-        html2canvas(document.body, {scrollX: 0, scrollY: -window.scrollY,backgroundColor:'#000000'}).then(function(canvas) {
+        html2canvas(document.body, {scrollY: -window.scrollY,backgroundColor:'#000000'}).then(function(canvas) {
           
           var imgGenerated = new Image();
           imgGenerated.src = canvas.toDataURL();
@@ -118,6 +122,9 @@ var app = new Vue({
           imgGenerated.style.width = '100%';
 
           document.getElementById("app").style.display = 'none';
+          
+          document.body.style.background = 'none';
+          document.body.style.padding = '0px';
 
         });
       },
@@ -126,10 +133,10 @@ var app = new Vue({
         const playButton = document.getElementById("playBgm")
         if(bgm.paused){
           bgm.play();
-          playButton.style.backgroundColor = "red";
+          playButton.style.border = "3px solid red";
         }else{
           bgm.pause();
-          playButton.style.backgroundColor = "black";
+          playButton.style.border = "none";
         }
       }
     },
@@ -154,7 +161,10 @@ var app = new Vue({
         }
     }
 
-    return maxIndex;
+    console.log(arr);
+    console.log(maxIndex);
+
+  return maxIndex;
 }
 
 export default app;

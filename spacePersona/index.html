@@ -20,7 +20,7 @@
 
   <div id="app">
     <audio id="bgm" src="./img/bgm.wav" controls autoplay loop hidden></audio>
-    <button v-on:click="playMusic" id="playBgm"> #></button>
+    <button v-on:click="playMusic" id="playBgm"></button>
     <section id="loading" v-if="(!startShow) && (qShowIndex == -1)">
       <h1>Loading {{loadProgress}}%..</h1>
     </section>
@@ -40,8 +40,7 @@
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 0">
-      <h1> 当你用望远镜观察到一颗将到达地球轨道附近的小行星：</h1>
-      <img style="position: relative; left: 70%;" src="./img/telescope.png">
+      <h1> 宇宙矿时代初，你在静谧的夜晚用望远镜观察到一颗即将到达地球轨道附近的小行星：</h1>
       <div class="Options">
         <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 这是一个罕见的观测机会</button>
         <button v-on:click="qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> 上面会有什么资源可以用吗</button>
@@ -52,7 +51,7 @@
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 1">
-      <h1> 在观测时，你最想了解的是小行星的：</h1>
+      <h1> 在观测时，你希望了解小行星的：</h1>
       <div class="Options">
         <button v-on:click="qShowIndex+=1; properties[1]+=1; properties[6]+=1;"> 大小</button>
         <button v-on:click="qShowIndex+=1; properties[2]+=2;"> 转速</button>
@@ -63,8 +62,7 @@
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 2">
-      <h1> 进行进一步检测，你希望这颗小行星会是：</h1>
-      <img src="./img/asteroid.png" style="position: relative; left: 70%;" src="./img/telescope.png">
+      <h1> 你被这颗小行星吸引住，希望这颗小行星会是：</h1>
       <div class="Options">
         <button v-on:click="qShowIndex+=1; properties[2]+=1; properties[5]+=1;"> C type(碳质小行星)</button>
         <button v-on:click="qShowIndex+=1; properties[7]+=2;"> S type(石质/硅质小行星)</button>
@@ -75,7 +73,7 @@
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 3">
-      <h1> 起源太空因此给你提供了一个可以将发射的机会，你想发射：</h1>
+      <h1> 起源太空得知了这个消息，要给你提供一个发射的机会，你想发射：</h1>
       <div class="Options">
         <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 探测机器人，收集数据</button>
         <button v-on:click="qShowIndex+=1; properties[2]+=1;"> 采矿机器人，附着在小行星上进行开采</button>
@@ -86,7 +84,7 @@
   </transition>
   <transition name="fade"> 
     <section v-if="qShowIndex === 4">
-      <h1> 你需要为航天器选择一种获取能源方式：</h1>
+      <h1> 发射前，你需要为你的航天器选择一种获取能源方式：</h1>
       <div class="Options">
         <button v-on:click="qShowIndex+=1; properties[6]+=2;"> 从地球带够</button>
         <button v-on:click="qShowIndex+=1; properties[6]+=1;"> 从空间站获取能源补充</button>
@@ -97,8 +95,7 @@
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 5">
-      <h1> 在航行时，你的航天器突然检测到一股无形的力量：</h1>
-      <img src="./img/power.png" style="position: relative; left: 70%;" src="./img/telescope.png">
+      <h1> 你的航天器进入了太空，但突然检测到一股无形的力量：</h1>
       <div class="Options">
         <button v-on:click="qShowIndex+=1; properties[6]+=1; properties[7]+=1;"> 是不是设备出了什么故障</button>
         <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 来自其他宇宙文明的神秘力量</button>
@@ -109,7 +106,7 @@
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 6">
-      <h1> 当你的航天器靠近小行星，发现与之前的观测很不一样：</h1>
+      <h1> 当你的航天器靠近小行星时，却发现它与之前的观测很不一样：</h1>
       <div class="Options">
         <button v-on:click="qShowIndex+=1; properties[1]+=1;"> 放弃，转向其他小行星</button>
         <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 很好的机会，可以收集更多数据查明原因</button>
@@ -120,8 +117,7 @@
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 7">
-      <h1> 最终，你成功获得了小行星上的资源并将其带回了地球，你会将它用作</h1>
-      <img src="./img/success.png" style="position: relative; left: 70%;" src="./img/telescope.png">
+      <h1> 终于，你成功获得了小行星上的资源并将其带回了地球，你会将它用作</h1>
       <div class="Options">
         <button v-on:click="calcResult(); qShowIndex+=1; properties[0]+=1;"> 探索小行星的形成，揭秘宇宙奥秘</button>
         <button v-on:click="calcResult(); qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> 卖了换钱，接着通过起源太空进行太空采矿</button>
@@ -138,14 +134,14 @@
         {{resultDes}}
       </h2>
       <div class="statistic">
-        <button id="academic" v-if="properties[0] > 0" v-bind:style="{ width:properties[0]*14.2+'%'}">学术</button>
-        <button id="resource" v-if="properties[1] > 0" v-bind:style="{ width:properties[1]*14.2+'%'}">资源</button>
-        <button id="engineer" v-if="properties[2] > 0" v-bind:style="{ width:properties[2]*14.2+'%'}">工程</button>
-        <button id="rescure" v-if="properties[3] > 0" v-bind:style="{ width:properties[3]*14.2+'%'}">拯救</button>
-        <button id="romantic" v-if="properties[4] > 0" v-bind:style="{ width:properties[4]*14.2+'%'}">浪漫</button>
-        <button id="vision" v-if="properties[5] > 0" v-bind:style="{ width:properties[5]*14.2+'%'}">远见</button>
-        <button id="pratical" v-if="properties[6] > 0" v-bind:style="{ width:properties[6]*14.2+'%'}">实践</button>
-        <button id="careful" v-if="properties[7] > 0" v-bind:style="{ width:properties[7]*14.2+'%'}">谨慎</button>
+        <button id="academic" v-if="properties[0] > 0" v-bind:style="{ width:properties[0]*14.2+'%'}">学术 : {{properties[0]*3}}</button>
+        <button id="resource" v-if="properties[1] > 0" v-bind:style="{ width:properties[1]*14.2+'%'}">资源 : {{properties[1]*3}}</button>
+        <button id="engineer" v-if="properties[2] > 0" v-bind:style="{ width:properties[2]*14.2+'%'}">工程 : {{properties[2]*3}}</button>
+        <button id="rescure" v-if="properties[3] > 0" v-bind:style="{ width:properties[3]*14.2+'%'}">拯救 : {{properties[3]*3}}</button>
+        <button id="romantic" v-if="properties[4] > 0" v-bind:style="{ width:properties[4]*14.2+'%'}">浪漫 : {{properties[4]*3}}</button>
+        <button id="vision" v-if="properties[5] > 0" v-bind:style="{ width:properties[5]*14.2+'%'}">远见 ：{{properties[5]*3}}</button>
+        <button id="pratical" v-if="properties[6] > 0" v-bind:style="{ width:properties[6]*14.2+'%'}">实践 ：{{properties[6]*3}}</button>
+        <button id="careful" v-if="properties[7] > 0" v-bind:style="{ width:properties[7]*14.2+'%'}">谨慎 ：{{properties[7]*3}}</button>
       </div>
       <p>
         {{resultText}}
@@ -164,7 +160,7 @@
       <p style="text-align: center;">
         中国第一家致力于太空资源开采及利用的商业公司
       </p>
-      <button v-on:click="generateImage">生成专属指南</button>
+      <button id="generateButton" v-on:click="generateImage">生成专属指南</button>
       <canvas id="imageResult"></canvas>
      
     </section>

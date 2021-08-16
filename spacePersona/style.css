@@ -93,12 +93,19 @@ button:active{
     right: 10%;
     width: fit-content;
     border: none;
+    background-image: url('./img/musicIcon.png');
+    background-color: transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    width: 52px;
+    height: 57px;
 
-    background-color: red;
+    padding: 35px;
+    border: 3px solid red;
 }
 
 #playBgm:active{
-    background-color: black;
+    border: 3px solid red;
 }
 
 #startButton {
@@ -169,6 +176,7 @@ button:active{
     
     overflow: visible;
     word-break: keep-all;
+    white-space: nowrap;
 
     border: 0;
 }
@@ -214,6 +222,7 @@ button:active{
 }
 
 hr{
+    border: none;
     border-top: 10px dotted red;
     margin: 100px;
 }

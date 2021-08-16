@@ -214,8 +214,8 @@ const mouse = new THREE.Vector2();
 
 function onMouseMove( event ) {
 
-	mouse.x = event.touches[0].clientX - window.innerWidth/2;
-	mouse.y = event.touches[0].clientY - window.innerHeight/2;
+	mouse.x = event.touches[0].clientX;
+	mouse.y = event.touches[0].clientY;
 
 }
 
