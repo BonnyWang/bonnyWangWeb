@@ -1,5 +1,7 @@
 import app from './main.js'
 
+const publicPath = "/spacePersona/";
+
 // Setting up basic elements
 
 const loaders = [];
@@ -34,7 +36,7 @@ document.body.appendChild( renderer.domElement);
 
 // Add a normal map texture material to the cube
 const textureloader = new THREE.TextureLoader();
-const normalTexture = textureloader.load('/spacePersona/img/asteroidNormal.png');
+const normalTexture = textureloader.load(publicPath+'img/asteroidNormal.png');
 
 const normalMaterial = new THREE.MeshStandardMaterial();
 normalMaterial.metalness = 0.1;
@@ -333,7 +335,7 @@ export default resultLoad;
 
 
 const loadAsteroids = function(){
-    const asteroids = ['/spacePersona/img/asteroid0.glb','/spacePersona/img/asteroid1.glb','/spacePersona/img/fakeAsteroid.glb'];
+    const asteroids = [publicPath+'img/asteroid0.glb',publicPath+'img/asteroid1.glb',publicPath+'img/fakeAsteroid.glb'];
 
     for ( i = 0; i < asteroids.length; i++) {
         loaders[i] = new THREE.GLTFLoader();
@@ -366,7 +368,7 @@ const loadAsteroids = function(){
 
 const loadRealAsteroid = function(){
     const realAstoidLoader = new THREE.GLTFLoader();
-    realAstoidLoader.load("/spacePersona/img/realAsteroid.glb", function ( gltf ) {
+    realAstoidLoader.load(publicPath+"img/realAsteroid.glb", function ( gltf ) {
 
         realAsteroid = gltf.scene;
 
@@ -388,7 +390,7 @@ const loadRealAsteroid = function(){
 
 const loadLogoUp = function(){
     const logoUpLoader = new THREE.GLTFLoader();
-    logoUpLoader.load("/spacePersona/img/logoUp.glb", function(gltf){
+    logoUpLoader.load(publicPath+"img/logoUp.glb", function(gltf){
         logoUp = gltf.scene;
         scene.add(logoUp);
         
@@ -410,7 +412,7 @@ const loadLogoUp = function(){
 
 const loadLogoDown = function(){
     const logoDownLoader = new THREE.GLTFLoader();
-    logoDownLoader.load("/spacePersona/img/logoDown.glb", function(gltf){
+    logoDownLoader.load(publicPath+"img/logoDown.glb", function(gltf){
         logoDown = gltf.scene;
 
         logoDown.scale.x =15;
@@ -435,7 +437,7 @@ const loadText = function(){
     // Load 3D text
     const textLoader = new THREE.FontLoader();
 
-    textLoader.load( '/spacePersona/img/font.json', function ( font ) {
+    textLoader.load( publicPath+'img/font.json', function ( font ) {
 
         const textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
             font: font,
@@ -467,7 +469,7 @@ const loadText = function(){
 const loadSatellite = function(){
 
     const satelliteLoader = new THREE.GLTFLoader();
-    satelliteLoader.load("/spacePersona/img/satellite.glb", function ( gltf ) {
+    satelliteLoader.load(publicPath+"img/satellite.glb", function ( gltf ) {
 
         scene.add( gltf.scene );
 

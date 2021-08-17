@@ -1,5 +1,7 @@
 import resultLoad from "./backGround.js";
 
+const publicPath = "/spacePersona/";
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -27,7 +29,9 @@ var app = new Vue({
       // careful:0
       properties:[0,0,0,0,0,0,0,0],
       bonnyProperties:[2,2,1,2,0,3,3,2],
-      polyProperties:[2,1,3,0,1,1,2,3]
+      polyProperties:[2,1,3,0,1,1,2,3],
+      mengProperties:[2,1,4,0,0,2,1,2],
+      xiaoJiaProperties:[0,3,4,0,0,3,2,2]
     },
 
     methods: {
@@ -35,7 +39,7 @@ var app = new Vue({
         this.startShow = false;
         this.qShowIndex = 0;
 
-        document.getElementById("bgm").src = '/img/qBgm.wav';
+        document.getElementById("bgm").src = publicPath+'img/qBgm.wav';
         document.getElementById("bgm").play();
       },
 
@@ -48,16 +52,32 @@ var app = new Vue({
       checkSpecial: function(){
         if(JSON.stringify(this.properties)==JSON.stringify(this.bonnyProperties)){
           console.log("You've discovered Bonny!");
+          this.properties = [0,0,0,0,0,0,0,0];
           this.resultPersona = "博尼";
           this.resultDes = "游戏小实习生";
-          this.resultText = "奇奇怪怪的生物，2021年7月来到起源太空实习。";
-          this.resultAdvice = "想成为宇宙矿时代的博尼吗？真的想成为宇宙矿时代的博尼吗？真的吗？真的吗？不，博尼觉得不行。"
+          this.resultText = "奇奇怪怪的生物，在起源太空实习。";
+          this.resultAdvice = "想成为宇宙矿时代的博尼吗？嘿嘿嘿，先发现所有的彩蛋吧。"
         }else if(JSON.stringify(this.properties)==JSON.stringify(this.polyProperties)){
           console.log("You've discovered WenHan!");
+          this.properties = [7,0,0,0,0,0,0,0];
           this.resultPersona = "周文翰";
           this.resultDes = "多面体";
           this.resultText = "即将要去法国读博士的行星科学家，苏老师的得意门生。";
           this.resultAdvice = "想要成为周文翰，你需要每天认真阅读论文，对行星防御，小行星分裂有深刻的见解。";
+        }else if(JSON.stringify(this.properties)==JSON.stringify(this.mengProperties)){
+          console.log("You've discovered Su Meng!");
+          this.properties = [7,7,7,7,7,7,7,7];
+          this.resultPersona = "苏萌";
+          this.resultDes = "起源太空创始人/CEO";
+          this.resultText = "人类迄今为止认知到的银河系最大的结构，\“费米气泡\”的发现者。创办起源太空，希望借太空采矿推动天文发展，拓展人类文明的疆界。";
+          this.resultAdvice = "想要成为苏萌，你需要对宇宙、人类起源怀有强烈的好奇心，以及探索世界永不枯竭的动力。就算你知道最终的答案也许毫无意义。";
+        }else if(JSON.stringify(this.properties)==JSON.stringify(this.xiaoJiaProperties)){
+          console.log("You've discovered Xiaojia!");
+          this.properties = [7,7,7,7,7,7,7,7];
+          this.resultPersona = "张晓佳";
+          this.resultDes = "行星科学家";
+          this.resultText = "起源太空的美女行星科学家，学术担当，还拥有可爱的小猫咪和研究恐龙学的神奇老公。";
+          this.resultAdvice = "想要成为晓佳，你需要对天文学，对小行星有深刻的了解。对各种天文知识，公式以及数值信手拈来。";
         }else{
           console.log(this.properties);
         }
@@ -67,7 +87,7 @@ var app = new Vue({
         const resultProperty = indexOfMax(this.properties);
         resultLoad();
         
-        document.getElementById("bgm").src = '/img/resultBgm.wav';
+        document.getElementById("bgm").src = publicPath +'img/resultBgm.wav';
         document.getElementById("bgm").loop = false;
         document.getElementById("bgm").play();
         
