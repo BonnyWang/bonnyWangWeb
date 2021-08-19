@@ -1,3 +1,11 @@
+// Hi this is just a game.
+// Please don't kill the fun by looking at the source code QwQ!!!!
+// Didn't thought this project can have the surprise function.
+// Therefore I didn't write the backend OwO.
+// Please respect the rule of the game!
+// Thank you!!!
+// Bonny Wang
+
 import resultLoad from "./backGround.js";
 
 const publicPath = "/spacePersona/";
@@ -31,7 +39,9 @@ var app = new Vue({
       bonnyProperties:[2,2,1,2,0,3,3,2],
       polyProperties:[2,1,3,0,1,1,2,3],
       mengProperties:[2,1,4,0,0,2,1,2],
-      xiaoJiaProperties:[0,3,4,0,0,3,2,2]
+      xiaoJiaProperties:[0,3,4,0,0,3,2,2],
+      chengWenProperties:[1,1,2,1,2,1,3,2],
+      ziyiProperties:[0,1,4,1,2,1,1,3]
     },
 
     methods: {
@@ -72,12 +82,26 @@ var app = new Vue({
           this.resultText = "人类迄今为止认知到的银河系最大的结构，\“费米气泡\”的发现者。创办起源太空，希望借太空采矿推动天文发展，拓展人类文明的疆界。";
           this.resultAdvice = "想要成为苏萌，你需要对宇宙、人类起源怀有强烈的好奇心，以及探索世界永不枯竭的动力。就算你知道最终的答案也许毫无意义。";
         }else if(JSON.stringify(this.properties)==JSON.stringify(this.xiaoJiaProperties)){
-          console.log("You've discovered Xiaojia!");
+          console.log("You've discovered SleepyCat!");
           this.properties = [7,7,7,7,7,7,7,7];
-          this.resultPersona = "张晓佳";
-          this.resultDes = "行星科学家";
-          this.resultText = "起源太空的美女行星科学家，学术担当，还拥有可爱的小猫咪和研究恐龙学的神奇老公。";
-          this.resultAdvice = "想要成为晓佳，你需要对天文学，对小行星有深刻的了解。对各种天文知识，公式以及数值信手拈来。";
+          this.resultPersona = "太空精灵猫";
+          this.resultDes = "虚拟化身";
+          this.resultText = "起源太空的美女行星科学家，学术担当。";
+          this.resultAdvice = "想要成为精灵猫，你需要拥有跳跳糖一样迅捷而灵敏的思维，让应接不暇的灵感轰击你的大脑吧。精灵猫对天文学，对小行星有深刻的了解。对各种天文知识，公式以及数值信手拈来。现下之余，别忘了喝上一杯最爱的咖啡哦";
+        }else if(JSON.stringify(this.properties)==JSON.stringify(this.chengWenProperties)){
+          console.log("You've discovered chengWen!");
+          this.properties = [7,7,7,7,7,7,7,7];
+          this.resultPersona = "杨成文";
+          this.resultDes = "起源太空副总裁";
+          this.resultText = "起源太空的商业担当。";
+          this.resultAdvice = "想要成为杨成文，你需要对商业市场以及资本运作有敏锐的观察力，能够及时捕捉到夹缝中的机遇与机会，并拥有统筹、协调各个项目的出色领导力。";
+        }else if(JSON.stringify(this.properties)==JSON.stringify(this.ziyiProperties)){
+          console.log("You've discovered ziYi!");
+          this.properties = [0,0,0,0,7,0,0,0];
+          this.resultPersona = "黑豆儿";
+          this.resultDes = "资深设计师";
+          this.resultText = "起源太空的设计担当。";
+          this.resultAdvice = "想要成为黑豆儿，你需要每天都迸发出满脑子的创意，将任何也许枯燥的内容变得动人无比，同时也对细节有完美的把控。";
         }else{
           console.log(this.properties);
         }
@@ -192,6 +216,7 @@ var app = new Vue({
       }
     },
     mounted:function(){
+      console.log("Hi this is just a game. Please don't kill the fun by looking at the source code QwQ!!!")
       this.calResolution();
     }
   })
