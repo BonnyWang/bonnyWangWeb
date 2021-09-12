@@ -42,7 +42,8 @@ var app = new Vue({
       mengProperties:[2,1,4,0,0,2,1,2],
       xiaoJiaProperties:[0,3,4,0,0,3,2,2],
       chengWenProperties:[1,1,2,1,2,1,3,2],
-      ziyiProperties:[0,1,4,1,2,1,1,3]
+      ziyiProperties:[0,1,4,1,2,1,1,3],
+      CopernicusProperties:[1,4,0,0,1,2,3,1]
     },
 
     methods: {
@@ -98,11 +99,18 @@ var app = new Vue({
           this.resultAdvice = "想要成为杨成文，你需要对商业市场以及资本运作有敏锐的观察力，能够及时捕捉到夹缝中的机遇与机会，并拥有统筹、协调各个项目的出色领导力。";
         }else if(JSON.stringify(this.properties)==JSON.stringify(this.ziyiProperties)){
           console.log("You've discovered ziYi!");
-          this.properties = [0,0,0,0,7,0,0,0];
+          this.properties = [0,0,0,7,7,7,0,0];
           this.resultPersona = "黑豆儿";
           this.resultDes = "资深设计师";
           this.resultText = "起源太空的设计担当。";
           this.resultAdvice = "想要成为黑豆儿，你需要每天都迸发出满脑子的创意，将任何也许枯燥的内容变得动人无比，同时也对细节有完美的把控。";
+        }else if(JSON.stringify(this.properties)==JSON.stringify(this.CopernicusProperties)){
+          this.properties = [7,0,0,0,0,0,7,7];
+          this.resultPersona = "尼古拉·哥白尼";
+          this.resultDes = "穿越时空的天文学家";
+          this.resultText = "文艺复兴时期天文学家，日心说倡导者。";
+          this.resultAdvice = "N/A";
+
         }else{
           console.log(this.properties);
         }
