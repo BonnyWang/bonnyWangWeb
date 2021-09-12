@@ -231,6 +231,30 @@ hr{
     text-shadow: 3px 3px red;
 }
 
+#LoadingImage{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    text-align: center;
+    background-color: black;
+}
+
+#LoadingImage h1{
+
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+#generateButton{
+    color: white;
+    background-color: red;
+    border: none;
+    font-size: 60px;
+    font-weight: bolder;
+    box-shadow: 10px 10px white;
+    margin-bottom: 50px;
+}
+
 .result img{
     display: block;
     margin-left: auto;
@@ -241,9 +265,16 @@ hr{
 
 .downArrow{
     position: fixed;
-    top: 80%;
-    left: 92.5%;
+    display: inline-block;
+    top: 90%;
+    left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.downArrow img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 

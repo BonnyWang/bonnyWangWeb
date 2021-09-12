@@ -23,6 +23,7 @@ var app = new Vue({
       qShowIndex: -1,
 
       showImage: false,
+      loadingImage:false,
       
       resultPersona: '神秘的未知星际流浪者',
 
@@ -174,6 +175,7 @@ var app = new Vue({
       generateImage:function(){
         console.log("Generate Image");
         this.showImage = true;
+        this.loadingImage = true;
         document.getElementById("mResult").scrollTo(0,0);
         document.getElementById("mResult").style.height = 'fit-content';
         document.getElementById("mResult").style.position = 'inherit';

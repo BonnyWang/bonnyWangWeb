@@ -162,6 +162,7 @@
         {{resultAdvice}}
       </p>
       <hr>
+      <button id="generateButton" v-on:click="generateImage">点击生成你的专属指南</button>
       <p style="text-align: center;">
         关注起源太空
       </p>
@@ -172,7 +173,6 @@
         扫码关注公众号，回复“身份指南”获得宇宙矿时代入口
       </p>
       <img src="./img/wechatCode.jpg">
-      <button id="generateButton" v-on:click="generateImage">生成你的专属指南</button>
       <canvas id="imageResult"></canvas>
      
     </section>
@@ -180,10 +180,15 @@
       <img src="./img/downArrow.gif">
       <img src="./img/downArrow.gif">
       <img src="./img/downArrow.gif">
-      <img src="./img/downArrow.gif">
+      <!-- <img src="./img/downArrow.gif"> -->
     </div>
+
+    <section id="LoadingImage" v-if="loadingImage">
+      <h1>正在生成你的专属指南...</h1>
+    </section>
     
   </div>
+
 
   <h1 style="text-align: center; display: none;" id="share">长按图片保存即可分享</h1>
   <!-- <canvas class="webgl"></canvas> -->
