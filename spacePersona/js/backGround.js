@@ -438,12 +438,22 @@ const loadText = function(){
     const textLoader = new THREE.FontLoader();
 
     textLoader.load( publicPath+'img/font.json', function ( font ) {
-
-        const textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
+        
+        let textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
             font: font,
             size: 0.2,
             height: 0.1,
         } );
+
+        if(app.lang == "ENG"){
+            console.log("hihi")
+
+            textGeometry = new THREE.TextGeometry( '>>Slide to Enter', {
+                font: font,
+                size: 0.2,
+                height: 0.1,
+            } );
+        }
 
 
         const textMeterial = new THREE.MeshStandardMaterial({color: 0x11ff00});

@@ -21,15 +21,19 @@
   <div id="app">
     <audio id="bgm" src="./img/bgm.wav" controls autoplay loop hidden></audio>
     <button v-on:click="playMusic" id="playBgm"></button>
+    <button v-on:click="changeLang" id="Lang">{{lang}}</button>
     <section id="loading" v-if="(!startShow) && (qShowIndex == -1)">
       <h1>Loading {{loadProgress}}%..</h1>
     </section>
     <transition name="fade">
     <section id="start" v-if="startShow">
       <div id ="title">
-        <p style="font-size: 150px;margin-top: -25px">宇宙</p>
-        <p style="margin-top: -20px;margin-bottom: -10px;">矿时代</p>
-        <p style="font-size: 80px;">身份指南</p>
+        <p v-if="lang === 'CHN'" style="font-size: 150px;margin-top: -25px">宇宙</p>
+        <p v-if="lang === 'ENG'" style="font-size: 150px;margin-top: -25px">Space</p>
+        <p v-if="lang === 'CHN'" style="margin-top: -20px;margin-bottom: -10px;">矿时代</p>
+        <p v-if="lang === 'ENG'" style="font-size: 150px;margin-top: -25px">Mining</p>
+        <p v-if="lang === 'CHN'" style="font-size: 80px;">身份指南</p>
+        <p v-if="lang === 'ENG'" style="font-size: 110px;margin-top: -25px">Persona</p>
       </div>
       <!-- <button id="startButton" v-on:click="showQ1" onclick="scaleDownLogo()">
         进入矿时代
@@ -40,97 +44,150 @@
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 0">
-      <h1> 宇宙矿时代初，你在静谧的夜晚用望远镜观察到一颗即将到达地球轨道附近的小行星：</h1>
+      <h1 v-if="lang === 'CHN'"> 宇宙矿时代初，你在静谧的夜晚用望远镜观察到一颗即将到达地球轨道附近的小行星：</h1>
+      <h1 v-if="lang === 'ENG'"> During the early space mining era, you are using your telescope to observe the night sky and spot a small asteroid approaching Earth's orbit on a peaceful night:</h1>
       <div class="Options">
-        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 这是一个罕见的观测机会</button>
-        <button v-on:click="qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> 上面会有什么资源可以用吗</button>
-        <button v-on:click="qShowIndex+=1; properties[3]+=2; properties[5]+=2; properties[7]+=1;"> 它会撞击到地球吗</button>
-        <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 好美丽，我要为它做首诗/画幅画</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[0]+=1;"> 这是一个罕见的观测机会</button>
+        <button v-if="lang === 'ENG'" v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[0]+=1;"> A rare opportunity for observation!</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> 上面会有什么资源可以用吗</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> Any resources available on it?</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[3]+=2; properties[5]+=2; properties[7]+=1;"> 它会撞击到地球吗</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[3]+=2; properties[5]+=2; properties[7]+=1;"> Will it collide with Earth?</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[4]+=1;"> 好美丽，我要为它做首诗/画幅画</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[4]+=1;"> How beautiful, I want to create something for it!</button>
       </div>
     </section>
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 1">
-      <h1> 在观测时，你希望了解小行星的：</h1>
+      <h1 v-if="lang === 'CHN'"> 在观测时，你希望了解小行星的：</h1>
+      <h1 v-if="lang === 'ENG'"> During the observation, you are hoping to learn about the asteroid's:</h1>
       <div class="Options">
-        <button v-on:click="qShowIndex+=1; properties[1]+=1; properties[6]+=1;"> 大小</button>
-        <button v-on:click="qShowIndex+=1; properties[2]+=2;"> 转速</button>
-        <button v-on:click="qShowIndex+=1; properties[3]+=1;"> 轨道</button>
-        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 年龄</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[1]+=1; properties[6]+=1;"> 大小</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[1]+=1; properties[6]+=1;"> Size</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[2]+=2;"> 转速</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[2]+=2;"> Rotation speed</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[3]+=1;"> 轨道</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[3]+=1;"> Orbit</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[0]+=1;"> 年龄</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[0]+=1;"> Age</button>
       </div>
     </section>
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 2">
-      <h1> 你被这颗小行星吸引住，希望这颗小行星会是：</h1>
+      <h1 v-if="lang === 'CHN'"> 你被这颗小行星吸引住，希望这颗小行星会是：</h1>
+      <h1 v-if="lang === 'ENG'"> You are captivated by this asteroid and hope that it will be:</h1>
       <div class="Options">
-        <button v-on:click="qShowIndex+=1; properties[2]+=1; properties[5]+=1;"> C type(碳质小行星)</button>
-        <button v-on:click="qShowIndex+=1; properties[7]+=2;"> S type(石质/硅质小行星)</button>
-        <button v-on:click="qShowIndex+=1; properties[1]+=1;"> M type(金属小行星)</button>
-        <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 一棵特别的小行星，无法被归类</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[2]+=1; properties[5]+=1;"> C type(碳质小行星)</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[7]+=2;"> S type(石质/硅质小行星)</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[1]+=1;"> M type(金属小行星)</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[4]+=1;"> 一棵特别的小行星，无法被归类</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[2]+=1; properties[5]+=1;"> C type(Carbonaceous)</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[7]+=2;"> S type(Siliceous)</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[1]+=1;"> M type(Metallic)</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[4]+=1;"> A unique, unclassifiable asteroid</button>
       </div>
     </section>
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 3">
-      <h1> 起源太空得知了这个消息，要给你提供一个发射的机会，你想发射：</h1>
+      <h1 v-if="lang === 'CHN'"> 起源太空得知了这个消息，要给你提供一个发射的机会，你想发射：</h1>
       <div class="Options">
-        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 探测机器人，收集数据</button>
-        <button v-on:click="qShowIndex+=1; properties[2]+=1;"> 采矿机器人，附着在小行星上进行开采</button>
-        <button v-on:click="qShowIndex+=1; properties[3]+=1; properties[4]+=1;"> 收集机器人，先尝试并帮忙清理宇宙垃圾</button>
-        <button v-on:click="qShowIndex+=1; properties[1]+=1;"> 捕捉机器人，将小行星整个带回地球</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[0]+=1;"> 探测机器人，收集数据</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[2]+=1;"> 采矿机器人，附着在小行星上进行开采</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[3]+=1; properties[4]+=1;"> 收集机器人，先尝试并帮忙清理宇宙垃圾</button>
+        <button v-if="lang === 'CHN'" v-on:click="qShowIndex+=1; properties[1]+=1;"> 捕捉机器人，将小行星整个带回地球</button>
+      <h1 v-if="lang === 'ENG'"> Origin Space has learned of this news and wants to offer you a launch opportunity. You want to launch:</h1>
+      <div class="Options">
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[0]+=1;"> A probe robot to collect data</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[2]+=1;"> A mining robot to attach to the asteroid and extract resources</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[3]+=1; properties[4]+=1;"> A cleanup robot to help clear space debris</button>
+        <button v-if="lang === 'ENG'" v-on:click="qShowIndex+=1; properties[1]+=1;"> A capture robot to bring the entire asteroid back to Earth</button>
       </div>
     </section>
   </transition>
   <transition name="fade"> 
     <section v-if="qShowIndex === 4">
-      <h1> 发射前，你需要为你的航天器选择一种获取能源方式：</h1>
-      <div class="Options">
+      <h1 v-if="lang === 'CHN'"> 发射前，你需要为你的航天器选择一种获取能源方式：</h1>
+      <h1 v-if="lang === 'ENG'"> Before launch, you need to choose a way for your spacecraft to obtain energy:</h1>
+      <div v-if="lang === 'CHN'" class="Options">
         <button v-on:click="qShowIndex+=1; properties[6]+=2;"> 从地球带够</button>
         <button v-on:click="qShowIndex+=1; properties[6]+=1;"> 从空间站获取能源补充</button>
         <button v-on:click="qShowIndex+=1; properties[5]+=2;"> 长远规划，慢慢建立空中的燃料站</button>
         <button v-on:click="qShowIndex+=1; properties[2]+=1;"> 利用太阳（光子）驱动（光帆）</button>
       </div>
+      <div v-if="lang === 'ENG'" class="Options">
+        <button v-on:click="qShowIndex+=1; properties[6]+=2;"> Bring enough from Earth</button>
+        <button v-on:click="qShowIndex+=1; properties[6]+=1;"> Obtain additional energy from a space station</button>
+        <button v-on:click="qShowIndex+=1; properties[5]+=2;"> Gradually establish fuel stations in space for long-term planning</button>
+        <button v-on:click="qShowIndex+=1; properties[2]+=1;"> Utilize photon propulsion (solar sail)</button>
+      </div>
     </section>
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 5">
-      <h1> 你的航天器进入了太空，但突然检测到一股无形的力量：</h1>
-      <div class="Options">
+      <h1 v-if="lang === 'CHN'"> 你的航天器进入了太空，但突然检测到一股无形的力量：</h1>
+      <div v-if="lang === 'CHN'" class="Options">
         <button v-on:click="qShowIndex+=1; properties[6]+=1; properties[7]+=1;"> 是不是设备出了什么故障</button>
         <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 来自其他宇宙文明的神秘力量</button>
         <button v-on:click="qShowIndex+=1; properties[7]+=1;"> 一定是黑洞！</button>
         <button v-on:click="qShowIndex+=1; properties[3]+=1; properties[7]+=1;"> 高维世界发生了什么</button>
       </div>
+      <h1 v-if="lang === 'ENG'"> Your spacecraft has entered deep space, but suddenly detects mysterious force:</h1>
+      <div v-if="lang === 'ENG'" class="Options">
+        <button v-on:click="qShowIndex+=1; properties[6]+=1; properties[7]+=1;"> A malfunction in the equipment?</button>
+        <button v-on:click="qShowIndex+=1; properties[4]+=1;"> Generated by other alien civilizations</button>
+        <button v-on:click="qShowIndex+=1; properties[7]+=1;"> Must be a black hole!</button>
+        <button v-on:click="qShowIndex+=1; properties[3]+=1; properties[7]+=1;"> Something has happened in the higher dimensions?</button>
+      </div>
     </section>
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 6">
-      <h1> 当你的航天器靠近小行星时，却发现它与之前的观测很不一样：</h1>
-      <div class="Options">
+      <h1 v-if="lang === 'CHN'"> 当你的航天器靠近小行星时，却发现它与之前的观测很不一样：</h1>
+      <div v-if="lang === 'CHN'" class="Options">
         <button v-on:click="qShowIndex+=1; properties[1]+=1;"> 放弃，转向其他小行星</button>
         <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 很好的机会，可以收集更多数据查明原因</button>
         <button v-on:click="qShowIndex+=1; properties[2]+=1; properties[7]+=1;"> 平衡当前资源损耗情况做决定</button>
         <button v-on:click="qShowIndex+=1; properties[6]+=1;"> 没有关系，先执行当前任务</button>
       </div>
+      <h1 v-if="lang === 'ENG'"> As your spacecraft approaches the asteroid, you find that it is very different from your previous observations:</h1>
+      <div v-if="lang === 'ENG'" class="Options">
+        <button v-on:click="qShowIndex+=1; properties[1]+=1;"> Abandon and redirect to another asteroid</button>
+        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> A great opportunity to collect more data and find out the cause</button>
+        <button v-on:click="qShowIndex+=1; properties[2]+=1; properties[7]+=1;"> Inspect current resource usage and make a decision later</button>
+        <button v-on:click="qShowIndex+=1; properties[6]+=1;"> Carry on the current mission</button>
+      </div>
     </section>
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 7">
-      <h1> 终于，你成功获得了小行星上的资源并将其带回了地球，你会将它用作：</h1>
-      <div class="Options">
+      <h1 v-if="lang === 'CHN'"> 终于，你成功获得了小行星上的资源并将其带回了地球，你会将它用作：</h1>
+      <div v-if="lang === 'CHN'" class="Options">
         <button v-on:click="qShowIndex+=1; properties[0]+=1;"> 探索小行星的形成，揭秘宇宙奥秘</button>
         <button v-on:click="qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> 卖了换钱，接着通过起源太空进行太空采矿</button>
         <button v-on:click="qShowIndex+=1; properties[4]+=1;"> 当作艺术品自己收藏</button>
         <button v-on:click="qShowIndex+=1; properties[3]+=1; properties[4]+=1;"> 贡献给全人类，这是世界的财富</button>
       </div>
+      <h1 v-if="lang === 'ENG'"> Finally, you have successfully obtained resources from the asteroid and brought them back to Earth. You will use them for:</h1>
+      <div v-if="lang === 'ENG'" class="Options">
+        <button v-on:click="qShowIndex+=1; properties[0]+=1;"> Exploring the formation of asteroids</button>
+        <button v-on:click="qShowIndex+=1; properties[1]+=1; properties[5]+=1;"> Sell and use the money to continue doing space mining through Origin Space</button>
+        <button v-on:click="qShowIndex+=1; properties[4]+=1;"> Put into my personal art collection</button>
+        <button v-on:click="qShowIndex+=1; properties[3]+=1; properties[4]+=1;"> Donate them as these are the wealth of the whole civilization</button>
+      </div>
     </section>
   </transition>
   <transition name="fade">
     <section v-if="qShowIndex === 8">
-      <h1>宇宙矿时代信息收集完毕：</h1>
-      <div class="Options">
+      <h1 v-if="lang === 'CHN'">宇宙矿时代信息收集完毕：</h1>
+      <h1 v-if="lang === 'ENG'">Information collection process is completed:</h1>
+      <div v-if="lang === 'CHN'" class="Options">
         <button style="font-size: 50px; border: 5px #013cff solid;" v-on:click="calcResult(); qShowIndex+=1; ">揭秘你的宇宙矿时代身份!</button>
+      </div>
+      <div v-if="lang === 'ENG'" class="Options">
+        <button style="font-size: 50px; border: 5px #013cff solid;" v-on:click="calcResult(); qShowIndex+=1; ">Reveal your identity in the space mining era!</button>
       </div>
     </section>
   </transition>
@@ -141,7 +198,7 @@
       <h2 style="text-align: center;">
         {{resultDes}}
       </h2>
-      <div class="statistic">
+      <div v-if="lang === 'CHN'" class="statistic">
         <button id="academic" v-if="properties[0] > 0" v-bind:style="{ width:properties[0]*14.2+'%'}">学术 : {{properties[0]*100/7}}</button>
         <button id="resource" v-if="properties[1] > 0" v-bind:style="{ width:properties[1]*14.2+'%'}">资源 : {{properties[1]*100/7}}</button>
         <button id="engineer" v-if="properties[2] > 0" v-bind:style="{ width:properties[2]*14.2+'%'}">工程 : {{properties[2]*100/7}}</button>
@@ -151,28 +208,42 @@
         <button id="pratical" v-if="properties[6] > 0" v-bind:style="{ width:properties[6]*14.2+'%'}">实践 ：{{properties[6]*100/7}}</button>
         <button id="careful" v-if="properties[7] > 0" v-bind:style="{ width:properties[7]*14.2+'%'}">谨慎 ：{{properties[7]*100/7}}</button>
       </div>
+      <div v-if="lang === 'ENG'" class="statistic">
+        <button id="academic" v-if="properties[0] > 0" v-bind:style="{ width:properties[0]*14.2+'%'}">Academic : {{properties[0]*100/7}}</button>
+        <button id="resource" v-if="properties[1] > 0" v-bind:style="{ width:properties[1]*14.2+'%'}">Resourceful : {{properties[1]*100/7}}</button>
+        <button id="engineer" v-if="properties[2] > 0" v-bind:style="{ width:properties[2]*14.2+'%'}">Engineering : {{properties[2]*100/7}}</button>
+        <button id="rescure" v-if="properties[3] > 0" v-bind:style="{ width:properties[3]*14.2+'%'}">Caring: {{properties[3]*100/7}}</button>
+        <button id="romantic" v-if="properties[4] > 0" v-bind:style="{ width:properties[4]*14.2+'%'}">Romantic : {{properties[4]*100/7}}</button>
+        <button id="vision" v-if="properties[5] > 0" v-bind:style="{ width:properties[5]*14.2+'%'}">Visionary ：{{properties[5]*100/7}}</button>
+        <button id="pratical" v-if="properties[6] > 0" v-bind:style="{ width:properties[6]*14.2+'%'}">Practical ：{{properties[6]*100/7}}</button>
+        <button id="careful" v-if="properties[7] > 0" v-bind:style="{ width:properties[7]*14.2+'%'}">Prudent ：{{properties[7]*100/7}}</button>
+      </div>
       <p>
         {{resultText}}
       </p>
       <hr>
-      <h2 style="font-weight: 600;">
+      <h2 v-if="lang === 'CHN'" style="font-weight: 600;">
         宇宙矿时代建议
+      </h2>
+      <h2 v-if="lang === 'ENG'" style="font-weight: 600;">
+        Space Mining Era Advice 
       </h2>
       <p>
         {{resultAdvice}}
       </p>
       <hr>
-      <button id="generateButton" v-on:click="generateImage">点击生成你的专属指南</button>
-      <p style="text-align: center;">
+      <button v-if="lang === 'CHN'" id="generateButton" v-on:click="generateImage">点击生成你的专属指南</button>
+      <button v-if="lang === 'ENG'" id="generateButton" v-on:click="generateImage">Click to Generate Your Personalized Guide</button>
+      <p v-if="lang === 'CHN'" style="text-align: center;">
         关注起源太空
       </p>
-      <p style="text-align: center;">
+      <p v-if="lang === 'CHN'" style="text-align: center;">
         中国第一家致力于太空资源开采及利用的商业公司
       </p>
-      <p style="text-align: center;">
+      <p v-if="lang === 'CHN'" style="text-align: center;">
         扫码关注公众号，回复“身份指南”获得宇宙矿时代入口
       </p>
-      <img src="./img/wechatCode.jpg">
+      <img v-if="lang === 'CHN'" src="./img/wechatCode.jpg">
       <canvas id="imageResult"></canvas>
      
     </section>
@@ -184,13 +255,16 @@
     </div>
 
     <section id="LoadingImage" v-if="loadingImage">
-      <h1>正在生成你的专属指南...</h1>
+      <h1  v-if="lang === 'CHN'">正在生成你的专属指南...</h1>
+      <h1 v-if="lang === 'ENG'">Generating Your Persona...</h1>
     </section>
     
   </div>
 
-
-  <h1 style="text-align: center; display: none;" id="share">长按图片保存即可分享</h1>
+  <div id="share" style="display: none;">
+    <!-- <h1 v-if="lang === 'CHN'" style="text-align: center;" >长按图片保存即可分享</h1> -->
+    <h1 v-if="lang === 'ENG'" style="text-align: center;" >Long Press the Image to Save</h1>
+  </div>
   <!-- <canvas class="webgl"></canvas> -->
   <script type="module" src="js/main.js"></script>
   
