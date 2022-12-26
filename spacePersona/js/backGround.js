@@ -1,6 +1,6 @@
 import app from './main.js'
 
-const publicPath = "/spacePersona/";
+const publicPath = "/";
 
 // Setting up basic elements
 
@@ -324,11 +324,10 @@ const resultLoadAnim = function(){
         
     }
 
-    console.log("loadingResult");
+    // console.log("loadingResult");
     
 }
 
-export default resultLoad;
 
 
 // Load Functions
@@ -446,7 +445,6 @@ const loadText = function(){
         } );
 
         if(app.lang == "ENG"){
-            console.log("hihi")
 
             textGeometry = new THREE.TextGeometry( '>>Slide to Enter', {
                 font: font,
@@ -471,6 +469,53 @@ const loadText = function(){
     },function(err){
         console.log("text load Error")
     });
+
+}
+
+const changeText = function(){
+    // Load 3D text
+
+    scene.remove(textMesh);
+
+    const textLoader = new THREE.FontLoader();
+
+    // So that only change text at teh first screen
+    if(app.qShowIndex < 0){
+
+        textLoader.load( publicPath+'img/font.json', function ( font ) {
+            
+            let textGeometry = new THREE.TextGeometry( '>>滑动进入矿时代', {
+                font: font,
+                size: 0.2,
+                height: 0.1,
+            } );
+
+            if(app.lang == "ENG"){
+
+                textGeometry = new THREE.TextGeometry( '>>Slide to Enter', {
+                    font: font,
+                    size: 0.2,
+                    height: 0.1,
+                } );
+            }
+
+
+            const textMeterial = new THREE.MeshStandardMaterial({color: 0x11ff00});
+            textMesh = new THREE.Mesh(textGeometry, textMeterial);
+
+
+            textMesh.position.x = -0.5;
+            textMesh.position.y = -1.5;
+
+            scene.add(textMesh);
+            
+
+        },function(xhr){
+            // app.loadProgress = Math.floor(xhr.loaded / xhr.total* 100);
+        },function(err){
+            // console.log("text load Error")
+        });
+    }
 
 }
 
@@ -526,4 +571,8 @@ const loadSatellite = function(){
 loadAsteroids();
 document.addEventListener('touchmove', onTouchMove);
 document.addEventListener( 'mousemove', onMouseMove, false );
+
+
+export default resultLoad;
+export {changeText};
 

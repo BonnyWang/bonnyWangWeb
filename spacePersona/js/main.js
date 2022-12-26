@@ -7,6 +7,7 @@
 // Bonny Wang
 
 import resultLoad from "./backGround.js";
+import { changeText } from "./backGround.js";
 
 const publicPath = "/spacePersona/";
 
@@ -54,6 +55,12 @@ var app = new Vue({
 
         document.getElementById("bgm").src = publicPath+'img/qBgm.wav';
         document.getElementById("bgm").play();
+
+        if(this.lang == "ENG"){
+          this.resultPersona = "Mysterious Wanderer of the Unknown"
+          this.resultDes = "No information for this identity" 
+          this.resultAdvice = "Grow freely and wildly!"
+        }
       },
 
       calResolution: function(){
@@ -70,6 +77,13 @@ var app = new Vue({
           this.resultDes = "游戏小实习生";
           this.resultText = "奇奇怪怪的生物，在起源太空实习。";
           this.resultAdvice = "想成为宇宙矿时代的博尼吗？嘿嘿嘿，先发现所有的彩蛋吧。"
+
+          if(this.lang == "ENG"){
+            this.resultPersona = "Bonny";
+            this.resultDes = "Gamer and Astronomer";
+            this.resultText = "An odd creature who is interning at Origin Space.";
+            this.resultAdvice = "Want to be Bonny in the age of space mining? Emmm, find all the Easter eggs first..."
+          }
         }else if(JSON.stringify(this.properties)==JSON.stringify(this.polyProperties)){
           console.log("You've discovered WenHan!");
           this.properties = [7,0,0,0,0,0,0,0];
@@ -111,7 +125,6 @@ var app = new Vue({
           this.resultDes = "穿越时空的天文学家";
           this.resultText = "文艺复兴时期天文学家，日心说倡导者。";
           this.resultAdvice = "N/A";
-
         }else{
           console.log(this.properties);
         }
@@ -207,29 +220,30 @@ var app = new Vue({
             case 4:
               this.resultPersona = "Interstellar Artist";
               this.resultDes = "The Romance is not Over";
-              this.resultText = "在大家都疯狂收集资源的时代，你依然有着浪漫的艺术情怀，比起外面的世界，你也希望在知识爆炸的新时代探索自己，从内心出发，在这个独一无二的时代，创造独属自己的世界。";
-              this.resultAdvice = "随着人类对太空资源的开采，人类对宇宙的了解也越来越多，新的灵感将不断涌现，关于人类起源、宇宙起源的艺术创作，将引领大众了解更多以往世界未知的美丽。";
+              this.resultText = "Amidst the craze for collecting resources, you still have a romantic artistic spirit. You desire to explore your inner self in this age of knowledge explosion. You will create a world that belongs to you and is unique to this era.";
+              this.resultAdvice = "As more people being engaged in the extraction of space resources, our understanding of the cosmos expands. New inspirations will continue to emerge. Artistic creations about the origins of humanity and the universe will lead the public to discover more of the beauty that was previously unknown to the world.";
               break;
             case 5:
-              this.resultPersona = "太空预言家";
-              this.resultDes = "拥有远见的未来主义者";
-              this.resultText = "比起眼前的利益，你更喜欢长远地布局未来。这在太空时代是必不可少的特质之一，结合现有信息以及你的远见，你将在太空时代越走越远。";
-              this.resultAdvice = "人类走向宇宙，一定不会是一个迅速的过程。而小行星采矿背后巨大地商业利益，也许可以成为推动人类走出地球的契机。以此为基点，你将展望未来无限的可能性。";
+              this.resultPersona = "Space Prophet";
+              this.resultDes = "Visionary Futurist";
+              this.resultText = "Rather than focusing on immediate gains, you prefer to plan for the future in the long term. This is one of the essential qualities necessary in the space age. With your foresight and knowledge, you will go further than anyone else in the space age.";
+              this.resultAdvice = "Humanity's journey to the universe will not be a rapid process. However, the massive ecnomical potential behind asteroid mining may serve as an opportunity to propel humanity beyond Earth. From this foundation, you will envision the limitless possibilities of the future.";
               break;
             case 6:
-              this.resultPersona = "宇宙践行者";
-              this.resultDes = "太空实战家";
-              this.resultText = "你不仅仅满足于纸上谈兵，遨游太空、星际旅行这些听起来像科幻小说一般的事情，在你的一腔热忱和不断实验中将变成现实。";
-              this.resultAdvice = "由于人类对太空的了解仍然有限，从事任何航天活动都需要大量实验来检验可行性。这其中会花费无数的人力和资源，但如果没有人去做，就不会实现。而你，就是推动这一切的源动力。";
+              this.resultPersona = "Cosmic Practitioner";
+              this.resultDes = "Space Field Experimentor";
+              this.resultText = "You don't just content yourself with theoretical discussions. Through your enthusiasm and constant experimentation, you can make things that sound like science fiction, such as space exploration and interstellar travel, to life. ";
+              this.resultAdvice = "Due to our limited understanding of space, a significant amount of experimentation is required to test the feasibility of any space activity. This will require a vast amount of human effort and resources. However, if no one takes the initiative, it will never be accomplished. You are the driving force behind it all.";
               break;
             case 7:
-              this.resultPersona = "星际规划师";
-              this.resultDes = "谨慎的决策领袖";
-              this.resultText = "作为宇宙矿时代的领导者，你胆大又仔细的策划与部署大大降低了人类各项宇宙计划实施的风险。在你的带领下，人类将不断创造更多的辉煌。";
-              this.resultAdvice = "宇宙中存在无数未知的危险，每一个决策都可能导向致命的结果，甚至整个文明的毁灭，只有不断想方设法地收集更多地信息，步步为营才能成为最终赢家。";
+              this.resultPersona = "Interstellar Planner";
+              this.resultDes = "Prudent Decision-maker";
+              this.resultText = "As a leader in the age of space mining, your bold planning and careful deployment greatly reduce the risk of achieving various space programs for humanity. Under your guidance, humanity will continue to create more and more brilliance.";
+              this.resultAdvice = "There are countless unknown dangers in the universe. Every decision may lead to fatal consequences, even the destruction of an entire civilization. Only by constantly collecting more information and taking careful steps can one become the ultimate winner.";
               break;
             default:
-              this.resultPersona = "神秘的未知漫游者"
+              this.resultPersona = "Mysterious Wanderer of the Unknown"
+
           }
 
         }
@@ -284,9 +298,15 @@ var app = new Vue({
       changeLang: function(){
         if(this.lang == "CHN"){
           this.lang = "ENG";
+          this.resultPersona = "Mysterious Wanderer of the Unknown"
+          this.resultDes = "No information for this identity" 
+          this.resultAdvice = "Grow freely and wildly!"
         }else{
           this.lang = "CHN";
         }
+
+        changeText();
+        
       }
     },
     mounted:function(){
